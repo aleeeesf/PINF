@@ -8,7 +8,7 @@ body{
     background-image: url('background.png'); 
 }
 
-.login{
+.cambio{
     width: 400px;
     background: #24303c;
     padding: 30px;
@@ -20,7 +20,7 @@ body{
     box-shadow: 7px 13px 37px #000;
 }
 
-.login h4{
+.cambio h4{
     font-size: 22px;
     margin-bottom: 20px;
 }
@@ -36,24 +36,7 @@ body{
     font-size: 18px;
 }
 
-.login p{
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
-}
-
-.login a{
-    color: white;
-    text-decoration: none;
-}
-
-.login a:hover{
-    color: white;
-    text-decoration: underline;
-}
-
-.login .botons{
+.cambio .botons{
     width: 100%;
     background: #1f53c5;
     border:none;
