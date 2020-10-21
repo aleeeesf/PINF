@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  type="image/png" href="5.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Pinfbet®: Apuestas de asignaturas</title>
+    <style>
+        header{
+            width: 100%;   
+            background: #24303c;      
+            height: 70px;            
+        }
+
+        .barra_superior{
+            width: 80%;
+            height: 70px;         
+            margin: auto;
+        }
+
+
+        .logo{
+            width: 30%;
+            height: 70px;       
+            float:left;    
+            width="45%" height="75%"
+            box-sizing: border-box;   
+            padding: 12px;
+        }
+
+        .navegacion{
+            width: 70%;
+            height: 70px;
+            float: left;
+            padding-top: 24px;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        nav ul li{
+            display: inline;
+
+        }
+
+        nav ul li a{
+            color: #ffffff;
+            font-size: 17px;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding-left: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family:'Courier New', Courier, monospace;
+            
+        }
+
+        nav ul li a:hover{
+            color: #444;
+        }
+
+    </style>
+</head>
+<header>
+    <div class = "barra_superior">
+        <div class = "logo">
+            <a href="hola.html"><img src="s2-minimized.png" alt="s2-minimized" border="0" width="37%" height="100%"></a>         
+        </div>
+
+        <nav class="navegacion">
+            <ul>
+                <li><a href=>Contacto</a></li>
+                <li><a href= "terms.html">Condiciones</a></li>
+                <li><a href=>Ayuda</a></li>
+            </ul>
+
+        </nav>
+        
+
+    </div>
+</header>
+<body>
+    <section class="form-register">
+        <h4>Formulario de Registro</h4>
+        <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su nombre"> 
+        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su apellidos"> 
+        <input class="controls" type="email" name="correos" id="correos" placeholder="Ingrese su correo"> 
+        <input class="controls" type="password" name="contraseñas" id="contraseñas" placeholder="Ingrese su contraseña">
+        <p>Estoy de acuerdo con <a href="terms.html">Términos y condiciones</a></p>
+        <input class="botons" type="submit" value="Registrar">
+        <p><a href="login.html">¿Ya tengo cuenta?</a></p>
+    </section>
+</body>
+</html>
