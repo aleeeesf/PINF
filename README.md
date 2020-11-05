@@ -1,6 +1,6 @@
 ![Alt text](Estatico/Imagenes/s2-minimized.png?raw=true "Optional Title")
 
-#Una página de apuestas de asignaturas de la Universidad De Cádiz🏛
+# Una página de apuestas de asignaturas de la Universidad De Cádiz🏛
 ✅Totalmente Gratuito
 🔥Compite con tus amigos
 💸Gana PINFCOINS
