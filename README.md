@@ -6,7 +6,7 @@
 <li>💸Gana PINFCOINS</li>
 <br>
 
-👦Proyecto realizado por los alumnos de Ing.Informátic apor la Univ. De Cádiz:<br>
+👦Proyecto realizado por los alumnos de Ing.Informática por la Univ. De Cádiz:<br>
 <li>Alejandro Serrano Fernández</li>
 <li>Pedro Antonio Navas Luque</li>
 <li>Antonio Morales Fernández</li>
