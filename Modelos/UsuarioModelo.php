@@ -40,7 +40,6 @@ require_once 'Modelos/conexionBD.php';
             if($save){
                 $resultado = true;
             }
-            echo "hola";
             return $resultado;
     
         }
