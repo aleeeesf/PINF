@@ -4,17 +4,23 @@
         <meta charset="UTF-8">
         <title>Pinfbet</title>
         <link rel="icon"  type="image/png" href="Estatico/Imagenes/5.png">
+        <link rel="stylesheet" href="Estatico/Estilos/estilos.css">
     </head>
     <body>
         <?php
             session_start();
             require_once "Controladores/UsuarioControlador.php";
         ?>
+        <header>
+            <?php
+                require_once "Plantillas/navegacion.html";
+            ?>
+        </header>
         <main>
             <?php
                 if(!isset($_GET['c']) || !isset($_GET['a'])){
                     $controlador = new UsuarioControlador();
-                    $controlador->principal();
+                    $controlador->registro();
                 }else{
                     $nombreControlador = $_GET['c'].'Controlador';
                     if(class_exists($nombreControlador)){
