@@ -10,4 +10,4 @@
 <li>Alejandro Serrano Fernández</li>
 <li>Pedro Antonio Navas Luque</li>
 <li>Antonio Morales Fernández</li>
-<li>Juan Carlos Gallardo Fernández</li>
+<li>Juan Carlos Fernández Gallardo</li>
