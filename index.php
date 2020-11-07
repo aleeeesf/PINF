@@ -10,6 +10,10 @@
             session_start();
             require_once "Controladores/UsuarioControlador.php";
         ?>
+        <header>
+            <?php
+            ?>
+        </header>
         <main>
             <?php
                 if(!isset($_GET['c']) || !isset($_GET['a'])){
