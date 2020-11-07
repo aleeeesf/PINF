@@ -14,13 +14,14 @@
                 </div>
                 <nav class="navegacion">
                     <ul>
-                        <li><a href= "Vistas/contacto.html">Contacto</a></li>
-                        <li><a href= "Vistas/Terminos.html">Condiciones</a></li>
+                        <li><a href= "../Vistas/contacto.html">Contacto</a></li>
+                        <li><a href= "../Vistas/Terminos.html">Condiciones</a></li>
                         <li><a href=>Ayuda</a></li>
                     </ul>            
                 </nav>
+            </div>
         </header>
-    </div>
+
         <form class="form-register" method="POST" action="index.php?c=Usuario&&a=save">
             <h4>Formulario de Registro</h4>
             <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su nombre"> 
@@ -29,7 +30,7 @@
             <input class="controls" type="password" name="contrasenas" id="contrasenas" placeholder="Ingrese su contraseña">
             <p>Estoy de acuerdo con <a href="terms.html">Términos y condiciones</a></p>
             <input class="botons" type="submit" name="register">
-         <p><a href="index.php?c=Usuario&&a=login">¿Ya tengo cuenta?</a></p>
+            <p><a href="../Vistas/InicioSesion.html">¿Ya tengo cuenta?</a></p>
         </form>
 
     </body>
