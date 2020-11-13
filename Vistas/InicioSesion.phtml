@@ -21,12 +21,17 @@
                 </nav>
             </div>
         </header>
-
-        <form class="cambio" method="POST" action="index.php?c=Usuario&&a=save">
-            <h4>Formulario de Registro</h4>
-            <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su correo para el cambio de contraseña"> 
-            <input class="botons" type="submit" name="register">
-        </form>
-
+    <form class="login" method="POST" action="index.php?c=Usuario&&a=iniciosesion">
+        <h4>Inicia Sesion</h4>
+        <input class="controls" type="email" name="correos" id="correos" placeholder="Ingrese su correo"> 
+        <input class="controls" type="password" name="contrasenas" id="contrasenas" placeholder="Ingrese su contraseña">
+        <?php
+            if ($_SESSION['error_login']){
+                echo "<p class='error'>".$_SESSION['error_login']."</p>";
+            }
+        ?>
+        <input class="botons" type="submit" name="inicio" value="Iniciar Sesion">
+        <p><a href="index.php?c=Usuario&&a=cambiocontra">¿Ha olvidado su contraseña?</a></p>
+    </form>
     </body>
 </html>

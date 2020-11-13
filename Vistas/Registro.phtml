@@ -3,19 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>Pinfbet</title>
-        <link rel="stylesheet" href="../Estatico/Estilos/estilos.css">
+        <link rel="stylesheet" href="Estatico/Estilos/estilos.css">
        
     </head>
     <body>
         <header>
             <div class = "barra_superior">
                 <div class = "logo">
-                     <a href="../index.php"><img src="../Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>         
+                     <a href="index.php"><img src="Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>         
                 </div>
                 <nav class="navegacion">
                     <ul>
-                        <li><a href= "../Vistas/contacto.html">Contacto</a></li>
-                        <li><a href= "../Vistas/Terminos.html">Condiciones</a></li>
+                        <li><a href= "index.php?c=Usuario&&a=contacto">Contacto</a></li>
+                        <li><a href= "index.php?c=Usuario&&a=terminos">Condiciones</a></li>
                         <li><a href=>Ayuda</a></li>
                     </ul>            
                 </nav>
@@ -28,9 +28,14 @@
             <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su apellidos"> 
             <input class="controls" type="email" name="correos" id="correos" placeholder="Ingrese su correo"> 
             <input class="controls" type="password" name="contrasenas" id="contrasenas" placeholder="Ingrese su contraseña">
-            <p>Estoy de acuerdo con <a href="terms.html">Términos y condiciones</a></p>
+            <?php
+                if ($_SESSION['error_registro']){
+                    echo "<p class='error'>".$_SESSION['error_registro']."</p>";
+                }
+            ?>
+            <p>Estoy de acuerdo con <a href="index.php?c=Usuario&&a=terminos">Términos y condiciones</a></p>
             <input class="botons" type="submit" name="register">
-            <p><a href="../Vistas/InicioSesion.html">¿Ya tengo cuenta?</a></p>
+            <p><a href="index.php?c=Usuario&&a=iniciosesion">¿Ya tengo cuenta?</a></p>
         </form>
 
     </body>

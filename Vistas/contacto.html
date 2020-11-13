@@ -3,44 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Estatico/Estilos/style-contactos.css">
-    <script src="../Scripts/jquery3.5.1.js"></script>
-    <script src="../Scripts/script-contactos.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="Estatico/Estilos/contactos-style.css">
+    <link rel="stylesheet" href="Estatico/Estilos/estilos.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-    
-</body>
-</html>
-
-<body>
-    <section class="form_wrap">
-
-        <section class="cantact_info">
-            <section class="info_title">
-                <span class="fa fa-user-circle"></span>
-                <h2>CONTACTA<br>CON NOSOSTROS</h2>
-            </section>
-        </section>
-
-        <form action="" class="form_contact">
-            <h2>Envia un mensaje</h2>
-            <div class="user_info">
-                <label for="names">Nombre y Apellidos *</label>
-                <input type="text" id="names">
-
-                <label for="phone">Telefono de Contacto</label>
-                <input type="text" id="phone">
-
-                <label for="email">Correo electronico *</label>
-                <input type="text" id="email">
-
-                <label for="mensaje">Mensaje *</label>
-                <textarea id="mensaje"></textarea>
-
-                <input type="button" value="Enviar Mensaje" id="btnSend">
+    <header>
+        <div class = "barra_superior">
+            <div class = "logo">
+                 <a href="index.php"><img src="Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>         
             </div>
-        </form>
+            <nav class="navegacion">
+                <ul>
+                    <li><a href= "index.php?c=Usuario&&a=iniciosesion">Iniciar Sesión</a></li>
+                    <li><a href= "index.php?c=Usuario&&a=save">Registrarse</a></li>
+                    <li><a href= "index.php?c=Usuario&&a=terminos">Condiciones</a></li>
+                    <li><a href=>Ayuda</a></li>
+                </ul>            
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="contenedor">
+            <h1 class="head">Equipo de Desarrollo</h1>
+            <div class="card-back">
+                <div class="card">
+                    <img src="Estatico/Imagenes/photo.jpg" class="card-img">
+                    <img src="Estatico/Imagenes/ale.jpg" class="profile-img">
+                    <h1>Alejandro Serrano</h1>
+                    <p class="titulo-trabajo">Director de Proyecto</p>
+                    <p class="about">
+                        Estudiante de 3º de Ingeniería Informática por la Universidad de Cádiz.
+                        Mi responsabilidad como director de proyecto es asegurar la eficacia y el 
+                        correcto funcionamiento de éste.
+                    </p>
+                    <a href="https://mail.google.com/" class="btn">alejandroserfer@gmail.com</a>       
+                </div>
+
+                <div class="card">
+                    <img src="Estatico/Imagenes/photo4.jpg" class="card-img">
+                    <img src="Estatico/Imagenes/antonio.jpg" class="profile-img">
+                    <h1>Antonio Morales</h1>
+                    <p class="titulo-trabajo">Vicedirector de Proyecto</p>
+                    <p class="about">
+                        Mi pasión por la programación web me motiva para
+                        dedicarme al desarrollo y al correcto avance 
+                        del backend de nuestro proyecto.
+                    </p>
+                    <a href="https://mail.google.com/" class="btn">antonio.morafer@alum.uca.es</a>       
+                </div>
+
+                <div class="card">
+                    <img src="Estatico/Imagenes/photo2.jpg" class="card-img">
+                    <img src="Estatico/Imagenes/pedro.jpg" class="profile-img">
+                    <h1>Pedro Antonio Navas</h1>
+                    <p class="titulo-trabajo">Backend Developer</p>
+                    <p class="about">
+                        Soy un maquina y ustedes tambien
+                    </p>
+                    <a href="https://mail.google.com/" class="btn">pedroantonio.navaslu@alum.uca.es</a>       
+                </div>
+
+                <div class="card">
+                    <img src="Estatico/Imagenes/photo3.jpg" class="card-img">
+                    <img src="Estatico/Imagenes/juancarlos.jpg" class="profile-img">
+                    <h1>Juan Carlos Fernández</h1>
+                    <p class="titulo-trabajo">Frontend/Backend</p>
+                    <p class="about">
+                        Soy un maquina y ustedes tambien
+                    </p>
+                    <a href="https://mail.google.com/" class="btn">juanca.fergallar@alum.uca.es</a>       
+                </div>
+            </div>
+        </div>
+        
+
 
     </section>
 
+
+
 </body>
+</html>
