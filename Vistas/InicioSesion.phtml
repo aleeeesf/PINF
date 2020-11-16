@@ -26,7 +26,7 @@
         <input class="controls" type="email" name="correos" id="correos" placeholder="Ingrese su correo"> 
         <input class="controls" type="password" name="contrasenas" id="contrasenas" placeholder="Ingrese su contraseña">
         <?php
-            if ($_SESSION['error_login']){
+            if (isset($_SESSION['error_login']) && $_SESSION['error_login']){
                 echo "<p class='error'>".$_SESSION['error_login']."</p>";
             }
         ?>

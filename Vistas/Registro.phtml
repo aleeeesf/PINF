@@ -28,8 +28,15 @@
             <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su apellidos"> 
             <input class="controls" type="email" name="correos" id="correos" placeholder="Ingrese su correo"> 
             <input class="controls" type="password" name="contrasenas" id="contrasenas" placeholder="Ingrese su contraseña">
+            <input class="controls" type="text" name="identificadores" id="identificadores" placeholder="Ingrese su identificador">
+            <select class="controls" name="carreras" id="carreras">
+                <option value="false">Seleccione una carrera:</option>
+                <option value="GII">Ingeniería Informática</option>
+                <option value="GIA">Ingeniería Aeroespacial</option>
+                <option value="GIM">Ingeniería Mecánica</option>
+            </select>
             <?php
-                if ($_SESSION['error_registro']){
+                if (isset($_SESSION['error_registro']) && $_SESSION['error_registro']){
                     echo "<p class='error'>".$_SESSION['error_registro']."</p>";
                 }
             ?>

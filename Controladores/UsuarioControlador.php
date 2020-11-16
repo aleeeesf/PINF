@@ -21,7 +21,7 @@
             require_once "Vistas/hola.phtml";
         }
     
-        public function save(){
+        public function save(){ //TERMINAR
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
@@ -30,10 +30,27 @@
                 $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
                 $email = isset($_POST['correos']) ? $_POST['correos'] : false;
                 $pass = isset($_POST['contrasenas']) ? $_POST['contrasenas'] : false;
-                if($nombre && $apellidos && $email && $pass){
-                    $usuario = new Usuario($nombre,$apellidos,$email,$pass);
-                    $usuario->save();
-                    header("Location:index.php?c=Usuario&&a=iniciosesion");
+                $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
+                $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
+                if($nombre && $apellidos && $email && $pass && $ide && $carrera){
+                    $usuario = new Usuario($nombre,$apellidos,$email,$pass,$ide,$carrera);
+                    if($usuario->identificador_repetido())
+                    {
+                        $_SESSION['error_registro'] = "Identificador repetido";
+                        header("Location:index.php?c=Usuario&&a=save");
+                    }
+
+                    else{
+                        if($usuario->email_repetido())
+                        {
+                            $_SESSION['error_registro'] = "Email repetido";
+                            header("Location:index.php?c=Usuario&&a=save");
+                        }
+                        else{
+                            $usuario->save();
+                            header("Location:index.php?c=Usuario&&a=iniciosesion");
+                        }
+                    }
                 }
                 else{
                     $_SESSION['error_registro'] = "Rellena todos los campos";
@@ -42,7 +59,7 @@
             } 
         }
 
-        public function iniciosesion(){
+        public function iniciosesion(){ 
             if (!isset($_POST['inicio'])){
                 require_once 'Vistas/InicioSesion.phtml';
                 $_SESSION['error_login']=false;

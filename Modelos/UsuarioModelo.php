@@ -6,13 +6,18 @@ require_once 'Modelos/conexionBD.php';
         private $email;
         private $contrasena;
         private $conex;
-
-        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null){
+        private $identificador;
+        private $pinfcoins;
+        private $carrera;
+        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $id=null,String $carrer=null){ 
             $this->conex=parent::conectar();
             $this->nombre=$nom;
             $this->apellidos=$apell;
             $this->email=$em;
             $this->contrasena=$contra;
+            $this->identificador=$id;
+            $this->pinfcoins=1000;
+            $this->carrera=$carrer;
         }
 
         function obtener_nombre() {
@@ -31,6 +36,18 @@ require_once 'Modelos/conexionBD.php';
             return $this->contrasena;
         }
 
+        function obtener_identificador(){
+            return $this->identificador;
+        }
+
+        function obtener_pinfcoins(){
+            return $this->pinfcoins;
+        }
+
+        function obtener_carrera(){
+            return $this->carrera;
+        }
+
         function insertar_nombre(String $nombre){
             $this->nombre=$nombre;
         }
@@ -47,8 +64,40 @@ require_once 'Modelos/conexionBD.php';
             $this->email=$email;
         }
 
+        function insertar_identificador(String $ident){
+            $this->identificador=$ident;
+        }
+
+        function insertar_pinfcoins(Int $pinfc){
+            $this->pinfcoins=$pinfc;
+        }
+
+        function insertar_carrera(String $carrer){
+            $this->carrera=$carrer;
+        }
+
+        public function identificador_repetido(){
+            $ident=false;
+            $sql="select * from usuario where identificador='{$this->obtener_identificador()}'";
+            $save=$this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $ident = true;
+            }
+            return $ident;
+        }
+
+        public function email_repetido(){
+            $ident=false;
+            $sql="select * from usuario where email='{$this->obtener_email()}'";
+            $save=$this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $ident = true;
+            }
+            return $ident;
+        }
+
         public function save(){
-            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}')";
+            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}','{$this->obtener_pinfcoins()}','{$this->obtener_carrera()}' )";
             $save = $this->conex->exec($sql);
             
             $resultado = false;
