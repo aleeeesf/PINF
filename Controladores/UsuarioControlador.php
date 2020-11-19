@@ -17,11 +17,11 @@
             require_once "Vistas/Terminos.html";
         }
 
-        public function hola(){
-            require_once "Vistas/hola.phtml";
+        public function apuestas(){
+            require_once "Vistas/Apuestas.html";
         }
     
-        public function save(){ //TERMINAR
+        public function save(){ 
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
@@ -75,7 +75,8 @@
                     $miusuario=$usuario->iniciosesion();
                     if($miusuario){
                         $_SESSION['identidad'] = $miusuario;
-                        var_dump($_SESSION['identidad']);
+                        header("Location:index.php?c=Usuario&&a=apuestas");
+                        //var_dump($_SESSION['identidad']);
                     }else{
                         $_SESSION['error_login'] = "Usuario y/o contraseña incorrecto(s)";
                         header("Location:index.php?c=Usuario&&a=iniciosesion");
@@ -84,9 +85,9 @@
                 }
                 else{
                     $_SESSION['error_login'] = "Rellena todos los campos";
-                    header("Location:index.php?c=Usuario&&a=iniciosesion");
                 }
-               
+                
+
             }
 
         }
