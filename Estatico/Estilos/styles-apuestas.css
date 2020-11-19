@@ -152,7 +152,7 @@ body{
     left: 0;
     width: 250px;
     height: 100%;
-    transition-property: left;;
+    transition-property: left;
 }
 
 .sidebar h4{
