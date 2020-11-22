@@ -18,9 +18,10 @@
         }
 
         public function apuestas(){
-            require_once "Vistas/Apuestas.html";
+            require_once "Vistas/Apuestas.phtml";
         }
     
+
         public function save(){ 
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
@@ -90,6 +91,29 @@
 
             }
 
+        }
+        public function logout(){
+            $_SESSION['identidad'] = null;
+            session_destroy();
+            header("Location:index.php");
+        }
+
+        public function editar_usuario()
+        {
+            if (!isset($_SESSION['identidad']))
+            {
+                header("Location:index.php");
+            }
+            if(!isset($_POST['edit_user']))
+            {
+                require_once "Vistas/EditarUsuario.phtml";
+            }
+            else
+            {
+                $id=$_SESSION['identidad']->identificador;
+                $usuario_ant=(new Usuario($id))->buscar_usuario();
+
+            }
         }
 
     }
