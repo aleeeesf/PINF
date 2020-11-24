@@ -17,11 +17,12 @@
             require_once "Vistas/Terminos.html";
         }
 
-        public function hola(){
-            require_once "Vistas/hola.phtml";
+        public function apuestas(){
+            require_once "Vistas/Apuestas.phtml";
         }
     
-        public function save(){ //TERMINAR
+
+        public function save(){ 
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
@@ -75,7 +76,8 @@
                     $miusuario=$usuario->iniciosesion();
                     if($miusuario){
                         $_SESSION['identidad'] = $miusuario;
-                        var_dump($_SESSION['identidad']);
+                        header("Location:index.php?c=Usuario&&a=apuestas");
+                        //var_dump($_SESSION['identidad']);
                     }else{
                         $_SESSION['error_login'] = "Usuario y/o contraseña incorrecto(s)";
                         header("Location:index.php?c=Usuario&&a=iniciosesion");
@@ -84,11 +86,34 @@
                 }
                 else{
                     $_SESSION['error_login'] = "Rellena todos los campos";
-                    header("Location:index.php?c=Usuario&&a=iniciosesion");
                 }
-               
+                
+
             }
 
+        }
+        public function logout(){
+            $_SESSION['identidad'] = null;
+            session_destroy();
+            header("Location:index.php");
+        }
+
+        public function editar_usuario()
+        {
+            if (!isset($_SESSION['identidad']))
+            {
+                header("Location:index.php");
+            }
+            if(!isset($_POST['edit_user']))
+            {
+                require_once "Vistas/EditarUsuario.phtml";
+            }
+            else
+            {
+                $id=$_SESSION['identidad']->identificador;
+                $usuario_ant=(new Usuario($id))->buscar_usuario();
+
+            }
         }
 
     }

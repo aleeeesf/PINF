@@ -117,5 +117,16 @@ require_once 'Modelos/conexionBD.php';
             }
             return $usuario;
         }
+
+        public function buscar_usuario()
+        {
+            $usuario=false;
+            $sql = "select * from usuario where identificador='{$this->obtener_identificador()}}'";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $usuario = $save->fetchObject();
+            }
+            return $usuario;
+        }
     }
 ?>
