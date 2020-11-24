@@ -92,6 +92,7 @@
             }
 
         }
+        
         public function logout(){
             $_SESSION['identidad'] = null;
             session_destroy();

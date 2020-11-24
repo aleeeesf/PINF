@@ -6,27 +6,48 @@
     <title>Document</title>
     <link rel="stylesheet" href="Estatico/Estilos/styles-apuestas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <input type="checkbox" id="check">
     <header>
         <div class = "barra_superior">
-
             <div class = "logo">                
-                 <a href="index.php"><img src="Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>   
+                 <a href="index.php?c=Usuario&&a=apuestas"><img src="Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>  
                  <label for="check">
-                    <i class="fas fa-bars" id="sidebar_btn"></i>
+                    <i class="fas fa-bars" id="sidebar_btn" style="color:#707d8c;"></i>
                 </label>      
             </div>
             <nav class="navegacion">
                 <ul>
-                    <li><a href= "index.php?c=Usuario&&a=logout">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Cerrar Sesión
-                        </a>
+                    <li>
+                        <div class="action" onclick="menuToggle();">
+                            <div class="profile">
+                                <img src="Estatico/Imagenes/avatar.png"  width="100%" height="100%">
+                            </div>
+                            <div class="menu">
+                                <h3>
+                                    <?php
+                                         echo $_SESSION['identidad']->identificador;
+                                    ?>
+                                    <br><span>Diseñador Web</span>
+                                </h3>
+                                <ul>
+                                    <li><img src="Estatico/Imagenes/user.png"><a href="#">Mi perfil</a></li>
+                                    <li><img src="Estatico/Imagenes/edit.png"><a href="#">Editar perfil</a></li>
+                                    <li><img src="Estatico/Imagenes/envelope.png"><a href="#">Bandeja</a></li>
+                                    <li><img src="Estatico/Imagenes/settings.png"><a href="#">Ajustes</a></li>
+                                    <li><img src="Estatico/Imagenes/question.png"><a href="#">Ayuda</a></li>
+                                    <li><img src="Estatico/Imagenes/log-out.png"><a href="index.php?c=Usuario&&a=logout">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script>
+                            function menuToggle(){
+                                const toggleMenu = document.querySelector('.menu');
+                                toggleMenu.classList.toggle('active');
+                            }
+                        </script>
                     </li>
                 </ul>            
             </nav>
@@ -42,15 +63,33 @@
                 ?>
             </h4>
         </center>
-        <a href="#"><i class="far fa-money-bill-alt"></i><span>Apostar</span></a>
-        <a href="#"><i class="fas fa-users"></i><span>Amigos</span></a>
-        <a href="#"><i class="fas fa-info-circle"></i><span>Ayuda</span></a>
-        <a href="#"><i class="fas fa-shield-alt"></i><span>Opciones</span></a>        
+        <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
+        <a href="#"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
+        <a href="#"><i class="fas fa-info-circle" style="color:#707d8c;"></i><span>Ayuda</span></a>
+        <a href="#"><i class="fas fa-shield-alt" style="color:#707d8c;"></i><span>Opciones</span></a>        
     </div>
 
 
     <div class="contenido">
+        <div class="container">
+            <div class = "row">
+                <div class="col">
+                    <div class="alert alert-success alert-dissmisable">
+                        has iniciado sesión correctamente
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
 
     </div>
+
+
+    <!--BOOSTRAP 4-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
