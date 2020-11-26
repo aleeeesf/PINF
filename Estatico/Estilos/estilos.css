@@ -202,6 +202,38 @@ body{
     font-size: 22px;
     margin-bottom: 20px;
 }
+/*Terminos estilo*/
+section{
+    padding: 1rem 0;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    height: 1000px;
+}
+
+.terminos h3{
+    margin-left: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #000
+}
+
+.terminos h4{
+    margin-left: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal; 
+    color: #000
+}
+
+.terminos ul{
+    margin-left: 80px;
+    font-family: 'Roboto', sans-serif;
+    color: #000
+}
+
+.terminos h2{
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #000
+}
 
 .box div{
     position: absolute;
