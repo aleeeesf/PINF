@@ -20,7 +20,7 @@
         public function apuestas(){
             require_once "Vistas/Apuestas.phtml";
         }
-    
+        
 
         public function save(){ 
             if(!isset($_POST['register'])){
@@ -108,7 +108,7 @@
             $usuario_ant=$_SESSION['identidad'];
             if(!isset($_POST['edit_user']))
             {
-                require_once "Vistas/EditarUsuario.phtml";
+                require_once "Vistas/EditarPerfil.phtml";
             }
             else
             {
