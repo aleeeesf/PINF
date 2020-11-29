@@ -105,15 +105,30 @@
             {
                 header("Location:index.php");
             }
+            $usuario_ant=$_SESSION['identidad'];
             if(!isset($_POST['edit_user']))
             {
                 require_once "Vistas/EditarUsuario.phtml";
             }
             else
             {
-                $id=$_SESSION['identidad']->identificador;
-                $usuario_ant=(new Usuario($id))->buscar_usuario();
-
+                $nombre = isset($_POST['nombres']) ? $_POST['nombres'] : false;
+                $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
+                $email = isset($_POST['correos']) ? $_POST['correos'] : false;
+                $pass = isset($_POST['contrasenas']) ? $_POST['contrasenas'] : false;
+                $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
+                $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
+                if($nombre && $apellidos && $email && $pass && $ide && $carrera)
+                {
+                    $usuario_ant->insertar_nombre($nombre);
+                    $usuario_ant->insertar_apellidos($apellidos);
+                    $usuario_ant->insertar_email($email);
+                    $usuario_ant->insertar_contrasena($contrasena);
+                    $usuario_ant->insertar_identificador($ide);
+                    $usuario_ant->insertar_carrera($carrera);
+                    $usuario_ant->actualizar_usuario();
+                    $_SESSION['identidad']=$usuario_ant;
+                }
             }
         }
 

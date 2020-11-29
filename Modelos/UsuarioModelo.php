@@ -118,15 +118,16 @@ require_once 'Modelos/conexionBD.php';
             return $usuario;
         }
 
-        public function buscar_usuario()
+        public function actualizar_usuario()
         {
             $usuario=false;
-            $sql = "select * from usuario where identificador='{$this->obtener_identificador()}}'";
+            $sql = "update 'usuario' set 'Nombre'='{$this->obtener_nombre()}','Apellidos'='{$this->obtener_apellidos()}','contrasena'='{$this->obtener_contrasena()}','email'='{$this->obtener_email()}','identificador'='{$this->obtener_identificador()}','pinfcoins'='{$this->obtener_pinfcoins()}','id_carrera'={$this->obtener_carrera()} where 1";
             $save = $this->conex->query($sql);
-            if($save && ($save->rowCount()==1)){
-                $usuario = $save->fetchObject();
+            $resultado = false;
+            if($save){
+                $resultado = true;
             }
-            return $usuario;
+            return $resultado;
         }
     }
 ?>
