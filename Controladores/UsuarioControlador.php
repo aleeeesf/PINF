@@ -108,6 +108,8 @@
             $usuario_ant=$_SESSION['identidad'];
             if(!isset($_POST['edit_user']))
             {
+                $usuario=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera);
+                $carreras=$usuario->listado_carreras();
                 require_once "Vistas/EditarPerfil.phtml";
             }
             else
@@ -115,19 +117,24 @@
                 $nombre = isset($_POST['nombres']) ? $_POST['nombres'] : false;
                 $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
                 $email = isset($_POST['correos']) ? $_POST['correos'] : false;
-                $pass = isset($_POST['contrasenas']) ? $_POST['contrasenas'] : false;
+                $contrasena = isset($_POST['contrasenas']) ? $_POST['contrasenas'] : false;
                 $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
-                if($nombre && $apellidos && $email && $pass && $ide && $carrera)
+                if($nombre && $apellidos  && $contrasena && $ide && $carrera)
                 {
-                    $usuario_ant->insertar_nombre($nombre);
-                    $usuario_ant->insertar_apellidos($apellidos);
-                    $usuario_ant->insertar_email($email);
-                    $usuario_ant->insertar_contrasena($contrasena);
-                    $usuario_ant->insertar_identificador($ide);
-                    $usuario_ant->insertar_carrera($carrera);
-                    $usuario_ant->actualizar_usuario();
-                    $_SESSION['identidad']=$usuario_ant;
+                    $usuario_nuevo=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,$usuario_ant->id);
+                    $usuario_nuevo->insertar_nombre($nombre);
+                    $usuario_nuevo->insertar_apellidos($apellidos);
+                    $usuario_nuevo->insertar_email($email);
+                    $usuario_nuevo->insertar_contrasena($contrasena);
+                    $usuario_nuevo->insertar_identificador($ide);
+                    $usuario_nuevo->insertar_carrera($carrera);
+                    var_dump($usuario_nuevo);
+                    $usuario_nuevo->actualizar_usuario();
+                    $_SESSION['identidad'] = null;
+                    session_destroy();
+                    header("Location:index.php?c=Usuario&&a=iniciosesion");
+                    
                 }
             }
         }

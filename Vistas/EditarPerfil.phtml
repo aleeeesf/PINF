@@ -29,15 +29,15 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" method="POST" action="index.php?c=Usuario&&a=editar_usuario" enctype="multipart/form-data">
+        <form role="form" method="POST" name="edit_user" action="index.php?c=Usuario&&a=editar_usuario" enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Nombre </label>
-              <input type="text" name="nombres" class="form-control" placeholder="Nombre" value="<?php echo $_SESSION['identidad']->nombre;?>">
+              <input type="text" name="nombres" class="form-control" placeholder="Nombre" value="<?php echo $_SESSION['identidad']->Nombre;?>">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Apellidos </label>
-              <input type="text" name="apellidos" class="form-control" placeholder="Apellidos" value="<?php echo $_SESSION['identidad']->apellidos;?>">
+              <input type="text" name="apellidos" class="form-control" placeholder="Apellidos" value="<?php echo $_SESSION['identidad']->Apellidos;?>">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Usuario</label>
@@ -49,15 +49,17 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Contraseña</label>
-              <input type="password" name="contrasenas" class="form-control" placeholder="Email" value="<?php $_SESSION['identidad']->contrasena;?>">
+              <input type="password" name="contrasenas" class="form-control" placeholder="Contraseña" value="<?php echo $_SESSION['identidad']->contrasena;?>">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Carrera</label>
-              <select class="form-control" name="carreras" id="carreras" value="<?php $_SESSION['identidad']->carrera;?>" >
-                <option value="false">Seleccione una carrera:</option>
-                <option value="GII">Ingeniería Informática</option>
-                <option value="GIA">Ingeniería Aeroespacial</option>
-                <option value="GIM">Ingeniería Mecánica</option>
+              <select class="form-control" name="carreras" id="carreras">
+                <option value="<?php echo $_SESSION['identidad']->id_carrera;?>">Mantener actual</option>
+                <?php
+                    while($carrera=$carreras->fetchObject()){
+                      echo "<option value=".$carrera->id_carrera.">".$carrera->nombre_carrera."</option>";
+                    }
+                ?>
             </select>
             </div>
             
@@ -65,7 +67,7 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <button type="submit" name="actualizar" class="btn btn-primary">Actualizar datos</button>
+            <button type="submit" name="edit_user" class="btn btn-primary">Actualizar datos</button>
           </div>
         </form>
       </div>

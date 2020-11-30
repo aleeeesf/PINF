@@ -9,15 +9,17 @@ require_once 'Modelos/conexionBD.php';
         private $identificador;
         private $pinfcoins;
         private $carrera;
-        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $id=null,String $carrer=null){ 
+        private $id;
+        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,$id1=null){ 
             $this->conex=parent::conectar();
             $this->nombre=$nom;
             $this->apellidos=$apell;
             $this->email=$em;
             $this->contrasena=$contra;
-            $this->identificador=$id;
+            $this->identificador=$ide;
             $this->pinfcoins=1000;
             $this->carrera=$carrer;
+            $this->id=$id1;
         }
 
         function obtener_nombre() {
@@ -46,6 +48,11 @@ require_once 'Modelos/conexionBD.php';
 
         function obtener_carrera(){
             return $this->carrera;
+        }
+
+        function obtener_id()
+        {
+            return $this->id;
         }
 
         function insertar_nombre(String $nombre){
@@ -97,7 +104,7 @@ require_once 'Modelos/conexionBD.php';
         }
 
         public function save(){
-            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}','{$this->obtener_pinfcoins()}','{$this->obtener_carrera()}' )";
+            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}','{$this->obtener_pinfcoins()}','{$this->obtener_carrera()}',null)";
             $save = $this->conex->exec($sql);
             
             $resultado = false;
@@ -121,13 +128,19 @@ require_once 'Modelos/conexionBD.php';
         public function actualizar_usuario()
         {
             $usuario=false;
-            $sql = "update 'usuario' set 'Nombre'='{$this->obtener_nombre()}','Apellidos'='{$this->obtener_apellidos()}','contrasena'='{$this->obtener_contrasena()}','email'='{$this->obtener_email()}','identificador'='{$this->obtener_identificador()}','pinfcoins'='{$this->obtener_pinfcoins()}','id_carrera'={$this->obtener_carrera()} where 1";
+            $sql = "update usuario set Nombre='{$this->obtener_nombre()}',Apellidos='{$this->obtener_apellidos()}',email='{$this->obtener_email()}',contrasena='{$this->obtener_contrasena()}',identificador='{$this->obtener_identificador()}',pinfcoins='{$this->obtener_pinfcoins()}',id_carrera='{$this->obtener_carrera()}' where id='{$this->obtener_id()}'";
             $save = $this->conex->query($sql);
             $resultado = false;
             if($save){
                 $resultado = true;
             }
             return $resultado;
+        }
+
+        public function listado_carreras(){
+            $sql = "select * from carrera where id_carrera!='{$this->obtener_carrera()}'";
+            $save = $this->conex->query($sql);
+            return $save;
         }
     }
 ?>
