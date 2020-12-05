@@ -274,6 +274,15 @@ label #sidebar_btn:hover{
     color: #ff5d94
 }
 
+.lot-of-cards
+{
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
 /*estilos*/
 .content .row div{
     margin-left: 10px;
