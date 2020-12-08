@@ -17,6 +17,7 @@ header{
 }
 
 .barra_superior{
+    z-index: 1;
     position: fixed; 
     width: 100%;
     height: 50px;         
@@ -146,13 +147,15 @@ label #sidebar_btn:hover{
 }
 
 .contenido{
+
     margin-left: 250px;
-    background: rgb(225, 225, 226);     
+    background: rgb(239, 239, 240);     
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 120vh;
     transition: 0.5s;
     padding-top: 70px;
+    position: relative;
 }
 
 #check:checked ~.contenido
@@ -308,3 +311,333 @@ label #sidebar_btn:hover{
         background-position: 0 50%;
     }
 }
+
+
+/*Card1*/
+.lot-of-cards .card
+{
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background: #122936;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 40px;
+}
+.lot-of-cards .card::before
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #ABEBC6;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
+.lot-of-cards .card:hover::before
+{
+    top: -70%;
+    transform: skewY(390deg);
+}
+
+.lot-of-cards .card::after{
+    content: 'PINFBET';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 8em;
+    color: rgba(0,0,0,0.1);
+}
+
+.lot-of-cards .card .imgBx
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+.lot-of-cards .card .imgBx img
+{
+    max-width: 80%;
+    transition: 0.5s;
+}
+.lot-of-cards .card:hover .imgBx img
+{
+    max-width: 50%;
+}
+
+.lot-of-cards .card .contentBx
+{
+    position: relative;
+    padding: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.lot-of-cards .card .contentBx h3{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card .contentBx .price
+{
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card .contentBx .apostar
+{
+    position: relative;
+    top: 200px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #fff;
+    text-decoration: none;
+    background: #2196f3;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+
+}
+
+.lot-of-cards .card:hover .contentBx .apostar
+{
+    top: 0;
+    opacity: 1;
+}
+
+
+/*Card 2*/
+.lot-of-cards .card2
+{
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background: #122936;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 40px;
+}
+.lot-of-cards .card2::before
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #f59a46;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
+.lot-of-cards .card2:hover::before
+{
+    top: -70%;
+    transform: skewY(390deg);
+}
+
+.lot-of-cards .card2::after{
+    content: 'PINFBET';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 8em;
+    color: rgba(0,0,0,0.1);
+}
+
+.lot-of-cards .card2 .imgBx
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+.lot-of-cards .card2 .imgBx img
+{
+    max-width: 80%;
+    transition: 0.5s;
+}
+.lot-of-cards .card2:hover .imgBx img
+{
+    max-width: 50%;
+}
+
+.lot-of-cards .card2 .contentBx
+{
+    position: relative;
+    padding: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.lot-of-cards .card2 .contentBx h3{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card2 .contentBx .price
+{
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card2 .contentBx .apostar
+{
+    position: relative;
+    top: 200px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #fff;
+    text-decoration: none;
+    background: #2196f3;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+
+}
+
+.lot-of-cards .card2:hover .contentBx .apostar
+{
+    top: 0;
+    opacity: 1;
+}
+
+/*Card3*/
+.lot-of-cards .card3
+{
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background: #122936;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 40px;
+}
+.lot-of-cards .card3::before
+{
+    content: '';
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #6afae7;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
+.lot-of-cards .card3:hover::before
+{
+    top: -70%;
+    transform: skewY(390deg);
+}
+
+.lot-of-cards .card3::after{
+    content: 'PINFBET';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 8em;
+    color: rgba(0,0,0,0.1);
+}
+
+.lot-of-cards .card3 .imgBx
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+.lot-of-cards .card3 .imgBx img
+{
+    max-width: 80%;
+    transition: 0.5s;
+}
+.lot-of-cards .card3:hover .imgBx img
+{
+    max-width: 50%;
+}
+
+.lot-of-cards .card3 .contentBx
+{
+    position: relative;
+    padding: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.lot-of-cards .card3 .contentBx h3{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card3 .contentBx .price
+{
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.lot-of-cards .card3 .contentBx .apostar
+{
+    position: relative;
+    top: 200px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #fff;
+    text-decoration: none;
+    background: #2196f3;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+
+}
+
+.lot-of-cards .card3:hover .contentBx .apostar
+{
+    top: 0;
+    opacity: 1;
+}
+
