@@ -20,6 +20,10 @@
         public function apuestas(){
             require_once "Vistas/Apuestas.phtml";
         }
+
+        public function miperfil(){
+            require_once "Vistas/MiPerfil.phtml";
+        }
         
 
         public function save(){ 

@@ -158,6 +158,17 @@ label #sidebar_btn:hover{
     position: relative;
 }
 
+.contenido_2{
+    margin-left: 250px;
+    background: rgb(239, 239, 240);     
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+    padding-top: 70px;
+    position: relative;
+}
+
 #check:checked ~.contenido
 {
     margin-left: 60px;
@@ -287,19 +298,15 @@ label #sidebar_btn:hover{
 }
 
 /*estilos*/
-.content .row div{
+.contenido_2 .row div{
     margin-left: 10px;
     margin-top: 0px;
 }
-.box-headerwith-border h3{
+.contenido_2.box-headerwith-border h3{
     margin-left:10px;
 }
 
-.content-wrapper section{
-    margin:0;
-    background-color:rgb(225, 225, 226);
-    height:600px;
-}
+
 @keyframes change{
     0%{
         background-position: 0 50%;
