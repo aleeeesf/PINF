@@ -25,6 +25,9 @@
             require_once "Vistas/MiPerfil.phtml";
         }
         
+        public function ayuda(){
+            require_once "Vistas/ayuda.html";
+        }
 
         public function save(){ 
             if(!isset($_POST['register'])){

@@ -70,6 +70,251 @@
     </div>
 <body>
 <div class="contenido">
+
+    <br></br>
+    <div class="d-flex justify-content-md-center ">    
+        <div class="debit_card">
+            <div class="card__front card__part">
+                <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                <img class="card__front-logo card__logo" src="Estatico/Imagenes/s2-minimized.png">
+                <p class="card_numer">**** **** **** 6258</p>
+                <div class="card__space-75">
+                <span class="card__label">Card holder</span>
+                <p class="card__info"><?php echo $_SESSION['identidad']->Nombre;?> <?php echo $_SESSION['identidad']->Apellidos;?></p>
+                </div>
+                <div class="card__space-25">
+                <span class="card__label">Crédito</span>
+                        <p class="card__info"><?php echo $_SESSION['identidad']->pinfcoins;?></p>
+                </div>
+            </div>
+            
+            <div class="card__back card__part">
+                <div class="card__black-line"></div>
+                <div class="card__back-content">
+                <div class="card__secret">
+                    <p class="card__secret--last">420</p>
+                </div>
+                <img class="card__back-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                <img class="card__back-logo card__logo" src="Estatico/Imagenes/s2-minimized.png">
+                
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <br></br>
+    <br></br>
+
+    <div class="container-fluid">
+    
+   
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class = "row no gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase">MI NOMBRE</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['identidad']->Nombre;?></div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class = "row no gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase">MI APELLIDO</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['identidad']->Apellidos;?></div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class = "row no gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase">EMAIL</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['identidad']->email;?></div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class = "row no gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase">MI GRADO</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['identidad']->id_carrera;?></div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+        </div>   
+
+        <div class="row">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class = "row no gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase">PINFCOINS</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">1000$</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class = "row no gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase">PINFCOINS APOSTADOS</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">1000$</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class = "row no gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase">ASIG. APROBADAS</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-book fa-2x text-gray-300"></i>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class = "row no gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase">ASIG. APROBADAS</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-book fa-2x text-gray-300"></i>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+
+       
+
+        <div class="row">
+        
+        
+        
+        </div>
+
+    </div>
+
+
+
+
+
+
+<!--
     <div class="wrapper">
         <div class="left">
             <img src="Estatico/Imagenes/s2-minimized.png" 
@@ -108,6 +353,8 @@
             </div>
         </div>
     </div>
+
+                        -->
 </div>
 </body>
 </html>

@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+
 }
 .logo label
 {
@@ -22,7 +23,7 @@ header{
     width: 100%;
     height: 50px;         
     margin: auto;
-    background: rgb(237, 242, 248);     
+    background: #fff;     
 }
 
 .buttons{
@@ -72,7 +73,7 @@ body{
 }  
 
 .sidebar{   
-    background:rgb(237, 242, 248);
+    background:#fff;
     margin-top: 50px;  
     position: fixed;
     left: 0;
@@ -149,14 +150,20 @@ label #sidebar_btn:hover{
 .contenido{
 
     margin-left: 250px;
-    background: rgb(239, 239, 240);     
+   /* background: #f5f6fa;  */   
+    /*background-image: url(../Imagenes/white-background.png);*/ 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.753), rgba(255, 255, 255, 0.705)), url(../Imagenes/white-background.png);
     background-position: center;
     background-size: cover;
-    height: 120vh;
+    height: 300vm;
     transition: 0.5s;
     padding-top: 70px;
     position: relative;
+    background-size: auto;
+    background-repeat: repeat;
+
 }
+
 
 .contenido_2{
     margin-left: 250px;
@@ -290,7 +297,7 @@ label #sidebar_btn:hover{
 
 .lot-of-cards
 {
-    margin-top: 80px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     align-content: center;
@@ -326,7 +333,7 @@ label #sidebar_btn:hover{
     position: relative;
     width: 320px;
     height: 420px;
-    background: #122936;
+    background: #992cff;
     border-radius: 20px;
     overflow: hidden;
     margin: 40px;
@@ -338,7 +345,7 @@ label #sidebar_btn:hover{
     top: -50%;
     width: 100%;
     height: 100%;
-    background: #ABEBC6;
+    background: #9e61ff;
     transform: skewY(345deg);
     transition: 0.5s;
 }
@@ -349,7 +356,6 @@ label #sidebar_btn:hover{
 }
 
 .lot-of-cards .card::after{
-    content: 'PINFBET';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -436,7 +442,8 @@ label #sidebar_btn:hover{
     position: relative;
     width: 320px;
     height: 420px;
-    background: #122936;
+    background: #71df7a;
+
     border-radius: 20px;
     overflow: hidden;
     margin: 40px;
@@ -448,7 +455,7 @@ label #sidebar_btn:hover{
     top: -50%;
     width: 100%;
     height: 100%;
-    background: #f59a46;
+    background: #a7fd92;
     transform: skewY(345deg);
     transition: 0.5s;
 }
@@ -459,7 +466,6 @@ label #sidebar_btn:hover{
 }
 
 .lot-of-cards .card2::after{
-    content: 'PINFBET';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -545,7 +551,7 @@ label #sidebar_btn:hover{
     position: relative;
     width: 320px;
     height: 420px;
-    background: #122936;
+    background: #f1845f;
     border-radius: 20px;
     overflow: hidden;
     margin: 40px;
@@ -557,7 +563,7 @@ label #sidebar_btn:hover{
     top: -50%;
     width: 100%;
     height: 100%;
-    background: #6afae7;
+    background: #ff936f;
     transform: skewY(345deg);
     transition: 0.5s;
 }
@@ -568,7 +574,6 @@ label #sidebar_btn:hover{
 }
 
 .lot-of-cards .card3::after{
-    content: 'PINFBET';
     position: absolute;
     bottom: 0;
     left: 0;
