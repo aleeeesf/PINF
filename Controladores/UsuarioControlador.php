@@ -1,5 +1,6 @@
 <?php
     require_once 'Modelos/UsuarioModelo.php';
+    require_once 'Modelos/AsignaturaModelo.php';
     class UsuarioControlador {
         public function principal(){
             require_once 'Vistas/Principal.html';
@@ -33,9 +34,6 @@
             require_once "Vistas/asignatura.phtml";
         }
 
-        public function aprobadas(){
-            require_once "Vistas/aprobadas.phtml";
-        }
 
         public function amigos(){
             require_once "Vistas/amigos.phtml";
@@ -154,6 +152,39 @@
                     session_destroy();
                     header("Location:index.php?c=Usuario&&a=iniciosesion");
                     
+                }
+            }
+        }
+
+        public function aprobadas()
+        {
+            if (!isset($_SESSION['identidad']))
+            {
+                header("Location:index.php");
+            }
+            $usuario=$_SESSION['identidad'];
+            $user=new Usuario(null,null,null,null,null,$usuario->id_carrera,$usuario->id);
+            if(!isset($_POST['aprobadas']))
+            {
+                
+                $asignaturas=$user->listado_asignaturas();
+                require_once "Vistas/aprobadas.phtml";
+            }
+            else
+            {
+                $asignatura = $_POST['asignaturas']=='false' ? false : $_POST['asignaturas'];
+                if ($asignatura)
+                {
+                    $id=(int)$asignatura;
+                    $asig=new Asignatura(null,null,$id,null,null);
+                    $asig->insertar_id_user($user->obtener_id());
+                    //var_dump($id);
+                    $asig->insertar_asignatura_aprobada($asig->obtener_identificador());
+                    header("Location:index.php?c=Usuario&&a=aprobadas");
+                }
+                else{
+                    $_SESSION['error_asignatura_aprobada'] = "Selecciona asignatura";
+                    header("Location:index.php?c=Usuario&&a=aprobadas");
                 }
             }
         }

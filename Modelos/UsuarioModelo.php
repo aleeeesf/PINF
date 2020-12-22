@@ -142,5 +142,13 @@ require_once 'Modelos/conexionBD.php';
             $save = $this->conex->query($sql);
             return $save;
         }
+
+        public function listado_asignaturas(){
+            $sql = "select * from asignatura where id_carrera='{$this->obtener_carrera()}'";
+            $save = $this->conex->query($sql);
+            return $save;
+        }
+
+        
     }
 ?>

@@ -75,20 +75,18 @@
     <i class="fas fa-home"></i>
 
     <div class="contenido">
-        <div class="container">
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option selected>Seleccione asignatura aprobada</option>
-                <option value="1">Analisis de Algoritmos</option>
-                <option value="2">Matematica Discreta</option>
-                <option value="3">Redes de Computadores</option>
+        <form class="container" action="index.php?c=Usuario&&a=aprobadas" method="POST" name="aprobadas">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="asignaturas" >
+                <option value="false">Seleccione una asignatura:</option>
+                <?php
+                    while($asignatura=$asignaturas->fetchObject()){
+                        echo "<option value=".$asignatura->id_asignatura.">".$asignatura->nombre_asignatura."</option>";
+                    }
+                ?>
             </select>
             <br>
-            <div class="col-12">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                </div>
-            </div>
-        </div>
+            <input class="botons" type="submit" name="aprobadas" value="Enviar">
+        </form>
     </div>
   
 
