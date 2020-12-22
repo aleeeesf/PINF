@@ -37,6 +37,10 @@
             require_once "Vistas/aprobadas.phtml";
         }
 
+        public function amigos(){
+            require_once "Vistas/amigos.phtml";
+        }
+
         public function save(){ 
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
