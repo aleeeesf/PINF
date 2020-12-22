@@ -29,6 +29,14 @@
             require_once "Vistas/ayuda.html";
         }
 
+        public function asignaturas(){
+            require_once "Vistas/asignatura.phtml";
+        }
+
+        public function aprobadas(){
+            require_once "Vistas/aprobadas.phtml";
+        }
+
         public function save(){ 
             if(!isset($_POST['register'])){
                 require_once 'Vistas/Registro.phtml';
