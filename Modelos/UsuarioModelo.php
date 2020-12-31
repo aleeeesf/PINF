@@ -149,6 +149,15 @@ require_once 'Modelos/conexionBD.php';
             return $save;
         }
 
+        public function buscar_amigo()
+        {
+            $sql="select * from usuario where identificador='{$this->obtener_identificador()}'";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $usuario = $save->fetchObject();
+            }
+            return $usuario;
+        }
         
     }
 ?>

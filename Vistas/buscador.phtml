@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS User Profile Card</title>
+    <link rel="stylesheet" href="Estatico/Estilos/miperfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <style>
+        .people-nearby .nearby-user{
+        padding: 20px 0;
+        border-radius: 8px;
+        border-top: 2px solid #f1f2f2;
+        border-bottom: 2px solid #f1f2f2;
+        border-right: 2px solid #f1f2f2;
+        border-left: 2px solid #f1f2f2;
+        margin-bottom: 20px;
+        background: white;
+        }
+
+        img.profile-photo-lg{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        }
+    </style>
+</head>
+<input type="checkbox" id="check">
+    <header>
+    
+        <div class = "barra_superior">
+            <div class = "logo">                
+                 <a href="index.php?c=Usuario&&a=apuestas"><img src="Estatico/Imagenes/s2-minimized.png" alt="s2-minimized" ></a>  
+                 <label for="check">
+                    <i class="fas fa-bars" id="sidebar_btn" style="color:#707d8c;"></i>
+                </label>      
+            </div>
+            <nav class="navegacion">
+                <ul>
+                    <li>
+                        <div class="action" onclick="menuToggle();">
+                            <div class="profile">
+                                <img src="Estatico/Imagenes/avatar.png"  width="100%" height="100%">
+                            </div>
+                            <div class="menu">
+                                <h3>
+                                    <?php
+                                         echo $_SESSION['identidad']->identificador;
+                                    ?>
+                                    <br><span>Diseñador Web</span>
+                                </h3>
+                                <ul>
+                                    <li><img src="Estatico/Imagenes/user.png"><a href="index.php?c=Usuario&&a=miperfil">Mi perfil</a></li>
+                                    <li><img src="Estatico/Imagenes/edit.png"><a href="index.php?c=Usuario&&a=editar_usuario">Editar perfil</a></li>
+                                    <li><img src="Estatico/Imagenes/envelope.png"><a href="#">Bandeja</a></li>
+                                    <li><img src="Estatico/Imagenes/settings.png"><a href="#">Ajustes</a></li>
+                                    <li><img src="Estatico/Imagenes/question.png"><a href="#">Ayuda</a></li>
+                                    <li><img src="Estatico/Imagenes/log-out.png"><a href="index.php?c=Usuario&&a=logout">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script>
+                            function menuToggle(){
+                                const toggleMenu = document.querySelector('.menu');
+                                toggleMenu.classList.toggle('active');
+                            }
+                        </script>
+                    </li>
+                </ul>            
+            </nav>
+        </div>
+    </header>
+
+    <div class="sidebar">
+    <center>
+            <?php
+                $nombre_foto = $_SESSION['identidad']->id;
+                $type = '.jpg';
+                $nombre_foto = $nombre_foto.$type;                
+                echo '<img src="Estatico/Profiles/'.$nombre_foto.'" class="profile_image" alt="">';
+            ?>
+           
+            <h4>
+                <?php
+                    echo "Hola, ".$_SESSION['identidad']->identificador;
+                ?>
+            </h4>
+        </center>
+        <a href="index.php?c=Usuario&&a=apuestas"><i class="fas fa-home" style="color:#707d8c;"></i><span>Inicio</span></a>
+        <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
+        <a href="index.php?c=Usuario&&a=amigos"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
+        <a href="index.php?c=Usuario&&a=aprobadas"><i class="far fa-thumbs-up" style="color:#707d8c;"></i><span>Asig.Aprobadas</span></a>
+        <a href="index.php?c=Usuario&&a=asignaturas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
+    </div>
+<body>
+
+    <form class="contenido" method="POST" action="index.php?c=Amistad&&a=buscador">
+        <div class="container d-flex">               
+            <input class="form-control me-2" type="search" placeholder="Buscar amigo" aria-label="Search" name="amigo">
+            <button class="btn btn-outline-success" type="submit" name='anadir'>Buscar</button>    
+        </div>  
+    </form>
+    <?php if (isset($usuario2)) { ?>
+    <div class="contenido">
+    <div class="container"> 
+    <div class="col-md-8">
+        <div class="people-nearby">                            
+            <div class="nearby-user">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user" class="profile-photo-lg">
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <h5><a class="profile-link">
+                        <?php
+                            echo $usuario2->Nombre." ".$usuario2->Apellidos;
+
+                        ?>
+                        </a></h5>
+                        <p><?php echo $usuario2->identificador;?></p> 
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                    <?php if (!$encontrado) { ?>
+                        <form action="index.php?c=Amistad&&a=enviar_solicitud" method="POST">
+                            <input type="number" name="id2" value="<?= $usuario2->id ?>" readonly hidden>
+                            <button type="submit" name="enviar_solicutud" class="btn btn-primary">Añadir amigo</button>
+                        </form>
+                    <?php }
+                    else {
+                        if ($encontrado->estado) { ?>
+                        <button type="button" class="btn btn-secondary" disabled>Sois amigos</button>
+                        <?php }else{
+                        if ($soySolicitante) { ?>
+                        <button type="button" class="btn btn-secondary" disabled>Pendiente</button>
+                        <?php } 
+                        else { ?>
+                        <form action="index.php?c=Amistad&&a=responder_solicitud" method="POST">
+                            <input type="number" name="id1" value="<?= $usuario2->id ?>" readonly hidden>
+                            <button type="submit" name="aceptar_amigo" class="btn btn-success">Agregar</button>
+                            <button type="submit" name="rechazar_amigo"  class="btn btn-danger">Rechazar</button>
+                        </form>
+                        
+                        <?php } } } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    </div>
+    <?php } ?>
+</body>
+</html>

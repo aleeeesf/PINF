@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -54,8 +57,14 @@
     </header>
 
     <div class="sidebar">
-        <center>
-            <img src="Estatico/Imagenes/antonio.jpg" class="profile_image" alt="">
+    <center>
+            <?php
+                $nombre_foto = $_SESSION['identidad']->id;
+                $type = '.jpg';
+                $nombre_foto = $nombre_foto.$type;
+                echo '<img src="Estatico/Profiles/'.$nombre_foto.'" class="profile_image" alt="">';
+            ?>
+
             <h4>
                 <?php
                     echo "Hola, ".$_SESSION['identidad']->identificador;
@@ -66,7 +75,7 @@
         <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
         <a href="index.php?c=Usuario&&a=amigos"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
         <a href="index.php?c=Usuario&&a=aprobadas"><i class="far fa-thumbs-up" style="color:#707d8c;"></i><span>Asig.Aprobadas</span></a>
-        <a href="index.php?c=Usuario&&a=asignaturas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>    
+        <a href="index.php?c=Usuario&&a=matriculadas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>
     </div>
 <body>
   <div class= "contenido">
@@ -125,9 +134,43 @@
 
                 </div><!-- /.box-body -->
 
+
+                <div class="row">
+                          <div class="col">
+                              <div class="card" style="width: 18rem;">
+                              <?php
+                                  echo '<img class="card-img-top" src="Estatico/Profiles/'.$nombre_foto.'" alt="Card image cap">';
+                              ?>
+                                
+                                <div class="card-body">
+                                  
+                                <p class="card-text">Foto actual</p>
+                                
+                                  
+                                </div>
+                              </div>
+                          </div>
+
+                          <div class="col">
+                              <table width="350" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#000000">
+                                <tr>
+                                    <td height="85" align="center" valign="middle" bgcolor="#FFFFFF">
+                                        <div align="center">
+                                            <input name="imagen" type="file" maxlength="150">
+                                            <br><br>                                     
+                                            <input type="submit" value="Agregar" name="enviar" style="cursor: pointer">
+                                        </div>
+                                    </td>
+                                </tr>
+                              </table>
+                          </div>
+                </div>
+                <br>
                 <div class="box-footer">
                   <button type="submit" name="edit_user" class="btn btn-primary">Actualizar datos</button>
                 </div>
+                <br>
+              </div>
             </form>
           </div>
         </div>

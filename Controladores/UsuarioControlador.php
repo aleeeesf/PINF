@@ -34,10 +34,11 @@
             require_once "Vistas/asignatura.phtml";
         }
 
-
         public function amigos(){
-            require_once "Vistas/amigos.phtml";
+            require_once "Vistas/principal_amigos.phtml";
         }
+
+        
 
         public function save(){ 
             if(!isset($_POST['register'])){
@@ -154,6 +155,26 @@
                     
                 }
             }
+            if(!isset($_POST['Agregar']))
+            {
+                /*$name = $_FILES['imagen']['name'];*/
+                if(isset($_FILES['imagen']['name']))
+                {
+                    $dir = "Estatico/Profiles/";
+                    $tipo = ".jpg";
+                    $nombre = $_SESSION['identidad']->id;
+
+                    if($_FILES['imagen']['type'] == "image/jpg")
+                    {
+                        echo "tipo no reconocido";
+                    }
+                    else
+                    {
+                        move_uploaded_file($_FILES['imagen']['tmp_name'], $dir.$nombre.$tipo);
+                    }
+                }
+            
+            }
         }
 
         public function aprobadas()
@@ -179,12 +200,45 @@
                     $asig=new Asignatura(null,null,$id,null,null);
                     $asig->insertar_id_user($user->obtener_id());
                     //var_dump($id);
-                    $asig->insertar_asignatura_aprobada($asig->obtener_identificador());
+                    $asig->insertar_asignatura_aprobada();
                     header("Location:index.php?c=Usuario&&a=aprobadas");
                 }
                 else{
                     $_SESSION['error_asignatura_aprobada'] = "Selecciona asignatura";
                     header("Location:index.php?c=Usuario&&a=aprobadas");
+                }
+            }
+        }
+
+        public function matriculadas()
+        {
+            if (!isset($_SESSION['identidad']))
+            {
+                header("Location:index.php");
+            }
+            $usuario=$_SESSION['identidad'];
+            $user=new Usuario(null,null,null,null,null,$usuario->id_carrera,$usuario->id);
+            if(!isset($_POST['matriculadas']))
+            {
+                
+                $asignaturas=$user->listado_asignaturas();
+                require_once "Vistas/matriculadas.phtml";
+            }
+            else
+            {
+                $asignatura = $_POST['asignaturas']=='false' ? false : $_POST['asignaturas'];
+                if ($asignatura)
+                {
+                    $id=(int)$asignatura;
+                    $asig=new Asignatura(null,null,$id,null,null);
+                    $asig->insertar_id_user($user->obtener_id());
+                    //var_dump($id);
+                    $asig->insertar_asignatura_matriculada();
+                    header("Location:index.php?c=Usuario&&a=matriculadas");
+                }
+                else{
+                    $_SESSION['error_asignatura_matriculada'] = "Selecciona asignatura";
+                    header("Location:index.php?c=Usuario&&a=matriculadas");
                 }
             }
         }

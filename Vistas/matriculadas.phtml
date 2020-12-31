@@ -79,9 +79,9 @@
     <i class="fas fa-home"></i>
 
     <div class="contenido">
-        <form class="container" action="index.php?c=Usuario&&a=aprobadas" method="POST" name="aprobadas">
+        <form class="container" action="index.php?c=Usuario&&a=matriculadas" method="POST" name="matriculadas">
             <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="asignaturas" >
-                <option value="false">Seleccione una asignatura aprobada:</option>
+                <option value="false">Seleccione una asignatura matriculada:</option>
                 <?php
                     while($asignatura=$asignaturas->fetchObject()){
                         echo "<option value=".$asignatura->id_asignatura.">".$asignatura->nombre_asignatura."</option>";
@@ -89,7 +89,7 @@
                 ?>
             </select>
             <br>
-            <input class="botons" type="submit" name="aprobadas" value="Enviar">
+            <input class="botons" type="submit" name="matriculadas" value="Enviar">
         </form>
     </div>
   

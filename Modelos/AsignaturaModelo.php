@@ -58,6 +58,17 @@ require_once 'Modelos/conexionBD.php';
             }
             return $resultado;
         }
+        public function insertar_asignatura_matriculada()
+        {
+            $sql = "insert into asignaturas_matriculadas values({$this->obtener_id_usuario()},{$this->obtener_identificador()})";
+            $save = $this->conex->exec($sql);
+            
+            $resultado = false;
+            if($save){
+                $resultado = true;
+            }
+            return $resultado;
+        }
 
     }
 ?>

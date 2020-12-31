@@ -9,6 +9,7 @@
         <?php
             session_start();
             require_once "Controladores/UsuarioControlador.php";
+            require_once "Controladores/AmistadControlador.php";
         ?> 
         
         <main>
