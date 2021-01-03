@@ -37,7 +37,7 @@
                                 <ul>
                                     <li><img src="Estatico/Imagenes/user.png"><a href="index.php?c=Usuario&&a=miperfil">Mi perfil</a></li>
                                     <li><img src="Estatico/Imagenes/edit.png"><a href="index.php?c=Usuario&&a=editar_usuario">Editar perfil</a></li>
-                                    <li><img src="Estatico/Imagenes/envelope.png"><a href="#">Bandeja</a></li>
+                                    <li><img src="Estatico/Imagenes/envelope.png"><a href="index.php?c=Amistad&&a=bandeja">Bandeja</a></li>
                                     <li><img src="Estatico/Imagenes/log-out.png"><a href="index.php?c=Usuario&&a=logout">Cerrar Sesión</a></li>
                                 </ul>
                             </div>
@@ -88,6 +88,7 @@
                     }
                 ?>
             </select>
+            <input type="text" id="notas" name="notas" required minlength="1" maxlength="1" size="10">
             <br>
             <input class="botons" type="submit" name="aprobadas" value="Enviar">
         </form>

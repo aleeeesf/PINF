@@ -47,6 +47,17 @@ require_once 'Modelos/conexionBD.php';
             return $this->id_user;
         }
 
+        
+        public function buscar_asignatura()
+        {
+            $sql="select * from asignatura where id_asignatura={$this->obtener_identificador()}";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $asignatura = $save->fetchObject();
+            }
+            return $asignatura;
+        }
+
         public function insertar_asignatura_aprobada()
         {
             $sql = "insert into asignaturas_aprobadas values({$this->obtener_id_usuario()},{$this->obtener_identificador()})";
@@ -70,5 +81,15 @@ require_once 'Modelos/conexionBD.php';
             return $resultado;
         }
 
+        function borrar_asignatura() {
+            $sql = "delete from asignaturas_matriculadas where id_asignatura={$this->obtener_identificador()} and id={$this->obtener_id_usuario()}";
+            $this->conex->exec($sql);
+        }
+
+        function asignaturas_matriculadas_usuario(){
+            $sql="select * from asignatura where id_asignatura in (select id_asignatura from asignaturas_matriculadas where id = {$this->obtener_id_usuario()})";
+            $save = $this->conex->query($sql);
+            return $save;
+        }
     }
 ?>

@@ -10,16 +10,16 @@ require_once 'Modelos/conexionBD.php';
         private $pinfcoins;
         private $carrera;
         private $id;
-        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,$id1=null){ 
+        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,Int $id1=null, Int $pinf=null){ 
             $this->conex=parent::conectar();
             $this->nombre=$nom;
             $this->apellidos=$apell;
             $this->email=$em;
             $this->contrasena=$contra;
             $this->identificador=$ide;
-            $this->pinfcoins=1000;
             $this->carrera=$carrer;
             $this->id=$id1;
+            $this->pinfcoins=$pinf;
         }
 
         function obtener_nombre() {
@@ -157,6 +157,12 @@ require_once 'Modelos/conexionBD.php';
                 $usuario = $save->fetchObject();
             }
             return $usuario;
+        }
+
+        public function mostrar_apuestas(){
+            $sql="select * from apuestas";
+            $save = $this->conex->query($sql);
+            return $save;
         }
         
     }

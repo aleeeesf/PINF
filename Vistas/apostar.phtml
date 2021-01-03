@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="Estatico/Estilos/asignaturas.css">
+	<meta charset="UTF-8">
+	<title>CSS User Profile Card</title>
+    <link rel="stylesheet" href="Estatico/Estilos/styles-apuestas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <style>
+        .people-nearby .nearby-user{
+        padding: 20px 0;
+        border-radius: 8px;
+        border-top: 2px solid #f1f2f2;
+        border-bottom: 2px solid #f1f2f2;
+        border-right: 2px solid #f1f2f2;
+        border-left: 2px solid #f1f2f2;
+        margin-bottom: 20px;
+        background: white;
+        }
 
-    <title>Document</title>
+        img.profile-photo-lg{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
-    <input type="checkbox" id="check">
+<input type="checkbox" id="check">
     <header>
     
         <div class = "barra_superior">
@@ -59,40 +76,47 @@
             <?php
                 $nombre_foto = $_SESSION['identidad']->id;
                 $type = '.jpg';
-                $nombre_foto = $nombre_foto.$type;
+                $nombre_foto = $nombre_foto.$type;                
                 echo '<img src="Estatico/Profiles/'.$nombre_foto.'" class="profile_image" alt="">';
             ?>
-
+           
             <h4>
                 <?php
                     echo "Hola, ".$_SESSION['identidad']->identificador;
                 ?>
             </h4>
-    </center>
+        </center>
         <a href="index.php?c=Usuario&&a=apuestas"><i class="fas fa-home" style="color:#707d8c;"></i><span>Inicio</span></a>
         <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
         <a href="index.php?c=Usuario&&a=amigos"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
         <a href="index.php?c=Usuario&&a=aprobadas"><i class="far fa-thumbs-up" style="color:#707d8c;"></i><span>Asig.Aprobadas</span></a>
-        <a href="index.php?c=Usuario&&a=matriculadas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>
+        <a href="index.php?c=Usuario&&a=asignaturas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
     </div>
-
-    <i class="fas fa-home"></i>
-
+    
     <div class="contenido">
-        <form class="container" action="index.php?c=Usuario&&a=matriculadas" method="POST" name="matriculadas">
+        <form class="container" action="index.php?c=Usuario&&a=apostar" method="POST" name="apuestas">
             <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="asignaturas" >
-                <option value="false">Seleccione una asignatura matriculada:</option>
+                <option value="false">Seleccione una asignatura para apostar:</option>
                 <?php
-                    while($asignatura=$asignaturas->fetchObject()){
+                    while($asignatura=$misasignaturas->fetchObject()){
                         echo "<option value=".$asignatura->id_asignatura.">".$asignatura->nombre_asignatura."</option>";
                     }
                 ?>
             </select>
             <br>
-            <input class="botons" type="submit" name="matriculadas" value="Enviar">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="asignaturas" >
+                <option value="false">Seleccione una apuesta:</option>
+                <?php
+                    while($apuesta=$apuestas->fetchObject()){
+                        echo "<option value=".$apuesta->id_apuesta.">".$apuesta->cuota." - ".$apuesta->descripcion."</option>";
+                    }
+                ?>
+            </select>
+            <br>
+            <input type="number" min=1 max=<?= $_SESSION['identidad']->pinfcoins ?> placeholder="<?php echo '1 - '.$_SESSION['identidad']->pinfcoins; ?>">
+            <input class="botons" type="submit" name="apuestas" value="Enviar">
         </form>
     </div>
-  
 
 </body>
 </html>

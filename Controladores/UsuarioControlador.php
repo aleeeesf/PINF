@@ -38,7 +38,24 @@
             require_once "Vistas/principal_amigos.phtml";
         }
 
-        
+        public function apostar(){
+            if(!isset($_SESSION['identidad'])){
+                require_once 'Vistas/Registro.phtml';
+                $_SESSION['error_registro']=false;
+            }else{
+                if (isset($_POST['apuestas'])){
+                    echo "eoeoeoe";
+                    //$asignatura = isset($_POST[])
+                }
+                else{
+                    $asig= new Asignatura();
+                    $asig->insertar_id_user($_SESSION['identidad']->id);
+                    $misasignaturas=$asig->asignaturas_matriculadas_usuario();
+                    $apuestas = (new Usuario())->mostrar_apuestas();
+                    require_once 'Vistas/apostar.phtml';
+                }
+            }
+        }
 
         public function save(){ 
             if(!isset($_POST['register'])){
@@ -52,7 +69,7 @@
                 $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
                 if($nombre && $apellidos && $email && $pass && $ide && $carrera){
-                    $usuario = new Usuario($nombre,$apellidos,$email,$pass,$ide,$carrera);
+                    $usuario = new Usuario($nombre,$apellidos,$email,$pass,$ide,$carrera,null);
                     if($usuario->identificador_repetido())
                     {
                         $_SESSION['error_registro'] = "Identificador repetido";
@@ -126,7 +143,7 @@
             $usuario_ant=$_SESSION['identidad'];
             if(!isset($_POST['edit_user']))
             {
-                $usuario=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera);
+                $usuario=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,null);
                 $carreras=$usuario->listado_carreras();
                 require_once "Vistas/EditarPerfil.phtml";
             }
@@ -140,7 +157,7 @@
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
                 if($nombre && $apellidos  && $contrasena && $ide && $carrera)
                 {
-                    $usuario_nuevo=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,$usuario_ant->id);
+                    $usuario_nuevo=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,$usuario_ant->id,$usuario_ant->pinfcoins);
                     $usuario_nuevo->insertar_nombre($nombre);
                     $usuario_nuevo->insertar_apellidos($apellidos);
                     $usuario_nuevo->insertar_email($email);
@@ -184,16 +201,17 @@
                 header("Location:index.php");
             }
             $usuario=$_SESSION['identidad'];
-            $user=new Usuario(null,null,null,null,null,$usuario->id_carrera,$usuario->id);
+            $user=new Usuario($usuario->Nombre,$usuario->Apellidos,$usuario->email,$usuario->contrasena,$usuario->identificador,$usuario->id_carrera,$usuario->id,$usuario->pinfcoins);
             if(!isset($_POST['aprobadas']))
             {
-                
                 $asignaturas=$user->listado_asignaturas();
                 require_once "Vistas/aprobadas.phtml";
             }
             else
             {
                 $asignatura = $_POST['asignaturas']=='false' ? false : $_POST['asignaturas'];
+                $nota=isset($_POST['notas']) ? $_POST['notas'] : false;
+                $nota1=(int)$nota;
                 if ($asignatura)
                 {
                     $id=(int)$asignatura;
@@ -201,6 +219,11 @@
                     $asig->insertar_id_user($user->obtener_id());
                     //var_dump($id);
                     $asig->insertar_asignatura_aprobada();
+                    $asig_ap=$asig->buscar_asignatura();
+                    $user->insertar_pinfcoins($user->obtener_pinfcoins()+ ($nota1*$asig_ap->numero_creditos));
+                    $user->actualizar_usuario();
+                    $_SESSION['identidad']->pinfcoins=$user->obtener_pinfcoins();
+                    $asig->borrar_asignatura();
                     header("Location:index.php?c=Usuario&&a=aprobadas");
                 }
                 else{
@@ -217,7 +240,7 @@
                 header("Location:index.php");
             }
             $usuario=$_SESSION['identidad'];
-            $user=new Usuario(null,null,null,null,null,$usuario->id_carrera,$usuario->id);
+            $user=new Usuario(null,null,null,null,null,$usuario->id_carrera,$usuario->id,null);
             if(!isset($_POST['matriculadas']))
             {
                 

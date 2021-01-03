@@ -65,4 +65,9 @@ require_once 'Modelos/conexionBD.php';
             $sql = "select * from usuario where id in (select id_user1 from amigos where id_user2 = {$this->obtener_identif2()})";
             return $this->conex->query($sql);
         }
+
+        function obtener_amigos(){
+            $sql="select * from usuario where id in(select id_user2 from amigos where id_user1='{$this->obtener_identif1()}' and estado=true) or id in(select id_user1 from amigos where id_user2='{$this->obtener_identif1()}' and estado=true)";
+            return $this->conex->query($sql);
+        }
     }

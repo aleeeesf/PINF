@@ -14,6 +14,17 @@
             }
         }
 
+        public function amigo()
+        {if(!isset($_SESSION['identidad']))
+            {
+                require_once "Vistas/Registro.phtml";
+            }else{
+                $amistad = new Amistad($_SESSION['identidad']->id,null);
+                $amigos1 = $amistad->obtener_amigos();
+                require_once "Vistas/principal_amigos.phtml";
+            }
+        }
+
         public function buscador(){
             if(!isset($_SESSION['identidad']))
             {
