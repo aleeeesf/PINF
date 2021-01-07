@@ -23,6 +23,10 @@ require_once 'Modelos/conexionBD.php';
         {
             $this->id_user=$id;
         }
+
+        function insertar_id_asignatura(Int $id_a){
+            $this->id=$id_a;
+        }
         function obtener_nombre() {
             return $this->nombre;
         }
@@ -69,6 +73,7 @@ require_once 'Modelos/conexionBD.php';
             }
             return $resultado;
         }
+
         public function insertar_asignatura_matriculada()
         {
             $sql = "insert into asignaturas_matriculadas values({$this->obtener_id_usuario()},{$this->obtener_identificador()})";
@@ -91,5 +96,46 @@ require_once 'Modelos/conexionBD.php';
             $save = $this->conex->query($sql);
             return $save;
         }
+
+        function comprobar_asignatura_aprobada(){
+            $sql = "select * from asignaturas_aprobadas where id_asignatura={$this->obtener_identificador()} and id={$this->obtener_id_usuario()}";
+            $save = $this->conex->query($sql);
+            if($save->rowCount()==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function comprobar_asignatura_matriculada(){
+            $sql = "select * from asignaturas_matriculadas where id_asignatura={$this->obtener_identificador()} and id={$this->obtener_id_usuario()}";
+            $save = $this->conex->query($sql);
+            if($save->rowCount()==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function recuento_asignaturas_aprobadas(){
+            $sql ="select count(id_asignatura) num from asignaturas_aprobadas where id={$this->obtener_id_usuario()}";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $asignatura = $save->fetchObject();
+            }
+            return $asignatura;
+        }
+
+        function recuento_asignaturas_matriculadas(){
+            $sql ="select count(id_asignatura) num from asignaturas_matriculadas where id={$this->obtener_id_usuario()}";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $asignatura = $save->fetchObject();
+            }
+            return $asignatura;
+        }
+        
     }
 ?>

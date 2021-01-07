@@ -104,7 +104,7 @@ require_once 'Modelos/conexionBD.php';
         }
 
         public function save(){
-            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}','{$this->obtener_pinfcoins()}','{$this->obtener_carrera()}',null)";
+            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}',0,'{$this->obtener_carrera()}',null)";
             $save = $this->conex->exec($sql);
             
             $resultado = false;
@@ -128,13 +128,18 @@ require_once 'Modelos/conexionBD.php';
         public function actualizar_usuario()
         {
             $usuario=false;
-            $sql = "update usuario set Nombre='{$this->obtener_nombre()}',Apellidos='{$this->obtener_apellidos()}',email='{$this->obtener_email()}',contrasena='{$this->obtener_contrasena()}',identificador='{$this->obtener_identificador()}',pinfcoins='{$this->obtener_pinfcoins()}',id_carrera='{$this->obtener_carrera()}' where id='{$this->obtener_id()}'";
+            $sql = "update usuario set Nombre='{$this->obtener_nombre()}',Apellidos='{$this->obtener_apellidos()}',email='{$this->obtener_email()}',contrasena='{$this->obtener_contrasena()}',identificador='{$this->obtener_identificador()}',pinfcoins={$this->obtener_pinfcoins()},id_carrera='{$this->obtener_carrera()}' where id='{$this->obtener_id()}'";
             $save = $this->conex->query($sql);
             $resultado = false;
             if($save){
                 $resultado = true;
             }
             return $resultado;
+        }
+        public function actualizar_pinfcoins_usuario()
+        {
+            $sql = "update usuario set pinfcoins = {$this->obtener_pinfcoins()} where id = {$this->obtener_id()}";
+            $this->conex->exec($sql);
         }
 
         public function listado_carreras(){

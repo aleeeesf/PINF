@@ -87,10 +87,10 @@
             </h4>
         </center>
         <a href="index.php?c=Usuario&&a=apuestas"><i class="fas fa-home" style="color:#707d8c;"></i><span>Inicio</span></a>
-        <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
-        <a href="index.php?c=Usuario&&a=amigos"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
+        <a href="index.php?c=Usuario&&a=apostar"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
+        <a href="index.php?c=Amistad&&a=amigo"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
         <a href="index.php?c=Usuario&&a=aprobadas"><i class="far fa-thumbs-up" style="color:#707d8c;"></i><span>Asig.Aprobadas</span></a>
-        <a href="index.php?c=Usuario&&a=asignaturas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
+        <a href="index.php?c=Usuario&&a=matriculadas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
     </div>
     
     <div class="contenido">
@@ -104,7 +104,7 @@
                 ?>
             </select>
             <br>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="asignaturas" >
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example " name="apuesta" >
                 <option value="false">Seleccione una apuesta:</option>
                 <?php
                     while($apuesta=$apuestas->fetchObject()){
@@ -113,9 +113,13 @@
                 ?>
             </select>
             <br>
-            <input type="number" min=1 max=<?= $_SESSION['identidad']->pinfcoins ?> placeholder="<?php echo '1 - '.$_SESSION['identidad']->pinfcoins; ?>">
+            <input type="number" min=1 max=<?= $_SESSION['identidad']->pinfcoins ?> placeholder="<?php echo '1 - '.$_SESSION['identidad']->pinfcoins; ?>" name='pinfcoin'>
             <input class="botons" type="submit" name="apuestas" value="Enviar">
         </form>
+        <?php 
+        if (isset($aleatorio)) {?>
+        <p>Has sacado un: <?= $aleatorio ?></p>
+        <?php } ?>
     </div>
 
 </body>

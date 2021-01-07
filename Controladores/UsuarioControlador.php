@@ -1,6 +1,7 @@
 <?php
     require_once 'Modelos/UsuarioModelo.php';
     require_once 'Modelos/AsignaturaModelo.php';
+    require_once 'Modelos/UsuApuesAsigModelo.php';
     class UsuarioControlador {
         public function principal(){
             require_once 'Vistas/Principal.html';
@@ -19,10 +20,26 @@
         }
 
         public function apuestas(){
+            $asig=new Asignatura(null,null,null,null,null);
+            $asig->insertar_id_user($_SESSION['identidad']->id);
+            $num=$asig->recuento_asignaturas_aprobadas();
+            $num1=(int)$num->num;
+            $amist=new Amistad(null,null);
+            $amist->insertar_identif1($_SESSION['identidad']->id);
+            $num2=$amist->recuento_amigos();
+            $num3=(int)$num2->num4;
             require_once "Vistas/Apuestas.phtml";
         }
 
         public function miperfil(){
+            $asig=new Asignatura(null,null,null,null,null);
+            $asig->insertar_id_user($_SESSION['identidad']->id);
+            $num=$asig->recuento_asignaturas_aprobadas();
+            $num1=(int)$num->num;
+            $asig1=new Asignatura(null,null,null,null,null);
+            $asig1->insertar_id_user($_SESSION['identidad']->id);
+            $num2=$asig1->recuento_asignaturas_matriculadas();
+            $num3=(int)$num2->num;
             require_once "Vistas/MiPerfil.phtml";
         }
         
@@ -34,26 +51,56 @@
             require_once "Vistas/asignatura.phtml";
         }
 
-        public function amigos(){
-            require_once "Vistas/principal_amigos.phtml";
-        }
 
         public function apostar(){
             if(!isset($_SESSION['identidad'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
             }else{
+                if ($_SESSION['identidad']->pinfcoins == 0) {
+                    (new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,40))->actualizar_pinfcoins_usuario();
+                    $_SESSION['identidad']->pinfcoins=40;
+                }
+                $asig= new Asignatura();
+                $asig->insertar_id_user($_SESSION['identidad']->id);
+                $misasignaturas=$asig->asignaturas_matriculadas_usuario();
+                $apuestas = (new Usuario())->mostrar_apuestas();
                 if (isset($_POST['apuestas'])){
-                    echo "eoeoeoe";
+                    $asigapos = $_POST['asignaturas']=='false' ? false : $_POST['asignaturas'];
+                    $apos = $_POST['apuesta']=='false' ? false : $_POST['apuesta'];
+                    $pinfc=isset($_POST['pinfcoin']) ? $_POST['pinfcoin'] : false;
+
+                    $asig->insertar_id_asignatura($asigapos);
+                    if($asigapos && $apos && $pinfc){
+                        $apuesta= new UsuApuesAsig ($_SESSION['identidad']->id,$asigapos,$apos);
+                        $aleatorio=rand(0,10);
+                        
+                        $cuota=($apuesta->obtener_cuota())->fetchObject();
+                        $cuota1=(float)$cuota->cuota;
+                        $pinfcoins_t = $_SESSION['identidad']->pinfcoins-$pinfc;
+                        if($apos==1 && $aleatorio<5){
+                            
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                        }
+                        if($apos==2 && $aleatorio >= 5){
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                        }
+                        if($aleatorio >5){
+                            $asig->insertar_asignatura_aprobada();
+                            $asig->borrar_asignatura();
+                        }
+                        $_SESSION['identidad']->pinfcoins=$pinfcoins_t;
+                        $user=new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,$_SESSION['identidad']->pinfcoins);
+                        $user->actualizar_pinfcoins_usuario();
+                    }
+                    require_once 'Vistas/apostar.phtml';
+                    //header("Location:index.php?c=Usuario&&a=apostar");
                     //$asignatura = isset($_POST[])
                 }
-                else{
-                    $asig= new Asignatura();
-                    $asig->insertar_id_user($_SESSION['identidad']->id);
-                    $misasignaturas=$asig->asignaturas_matriculadas_usuario();
-                    $apuestas = (new Usuario())->mostrar_apuestas();
-                    require_once 'Vistas/apostar.phtml';
-                }
+                require_once 'Vistas/apostar.phtml';
+                
             }
         }
 
@@ -206,6 +253,7 @@
             {
                 $asignaturas=$user->listado_asignaturas();
                 require_once "Vistas/aprobadas.phtml";
+                $_SESSION['error_asignatura_aprobada']=false;
             }
             else
             {
@@ -218,13 +266,22 @@
                     $asig=new Asignatura(null,null,$id,null,null);
                     $asig->insertar_id_user($user->obtener_id());
                     //var_dump($id);
-                    $asig->insertar_asignatura_aprobada();
-                    $asig_ap=$asig->buscar_asignatura();
-                    $user->insertar_pinfcoins($user->obtener_pinfcoins()+ ($nota1*$asig_ap->numero_creditos));
-                    $user->actualizar_usuario();
-                    $_SESSION['identidad']->pinfcoins=$user->obtener_pinfcoins();
-                    $asig->borrar_asignatura();
-                    header("Location:index.php?c=Usuario&&a=aprobadas");
+                    if($asig->comprobar_asignatura_aprobada() == true)
+                    {
+                        $_SESSION['error_asignatura_aprobada']=false;
+                        $asig->insertar_asignatura_aprobada();
+                        $asig_ap=$asig->buscar_asignatura();
+                        $user->insertar_pinfcoins($user->obtener_pinfcoins()+ ($nota1*$asig_ap->numero_creditos));
+                        $user->actualizar_pinfcoins_usuario();
+                        $_SESSION['identidad']->pinfcoins=$user->obtener_pinfcoins();
+                        $asig->borrar_asignatura();
+                        header("Location:index.php?c=Usuario&&a=aprobadas");
+                    }
+                    else{
+                        $_SESSION['error_asignatura_aprobada'] = "La asignatura ya está aprobada";
+                        header("Location:index.php?c=Usuario&&a=aprobadas");
+                    }
+                    
                 }
                 else{
                     $_SESSION['error_asignatura_aprobada'] = "Selecciona asignatura";
@@ -246,6 +303,7 @@
                 
                 $asignaturas=$user->listado_asignaturas();
                 require_once "Vistas/matriculadas.phtml";
+                $_SESSION['error_asignatura_matriculada']=false;
             }
             else
             {
@@ -256,8 +314,22 @@
                     $asig=new Asignatura(null,null,$id,null,null);
                     $asig->insertar_id_user($user->obtener_id());
                     //var_dump($id);
-                    $asig->insertar_asignatura_matriculada();
-                    header("Location:index.php?c=Usuario&&a=matriculadas");
+                    if($asig->comprobar_asignatura_aprobada()==true){
+                        if($asig->comprobar_asignatura_matriculada()==true)
+                        {
+                            $_SESSION['error_asignatura_matriculada']=false;
+                            $asig->insertar_asignatura_matriculada();
+                            header("Location:index.php?c=Usuario&&a=matriculadas");
+                        }
+                        else{
+                            $_SESSION['error_asignatura_matriculada']="Ya estás matriculado";
+                            header("Location:index.php?c=Usuario&&a=matriculadas");
+                        }
+                    }else{
+                        $_SESSION['error_asignatura_matriculada']="Ya has aprobado";
+                        header("Location:index.php?c=Usuario&&a=matriculadas");
+                    }   
+  
                 }
                 else{
                     $_SESSION['error_asignatura_matriculada'] = "Selecciona asignatura";
@@ -265,7 +337,6 @@
                 }
             }
         }
-
     }
         
 ?>

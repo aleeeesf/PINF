@@ -62,12 +62,21 @@ require_once 'Modelos/conexionBD.php';
         }
 
         function respuestas() {
-            $sql = "select * from usuario where id in (select id_user1 from amigos where id_user2 = {$this->obtener_identif2()})";
+            $sql = "select * from usuario where id in (select id_user1 from amigos where id_user2 = {$this->obtener_identif2()} and estado=false)";
             return $this->conex->query($sql);
         }
 
         function obtener_amigos(){
             $sql="select * from usuario where id in(select id_user2 from amigos where id_user1='{$this->obtener_identif1()}' and estado=true) or id in(select id_user1 from amigos where id_user2='{$this->obtener_identif1()}' and estado=true)";
             return $this->conex->query($sql);
+        }
+        
+        function recuento_amigos(){
+            $sql="select count(*) num4 from usuario where id in(select id_user2 from amigos where id_user1='{$this->obtener_identif1()}' and estado=true) or id in(select id_user1 from amigos where id_user2='{$this->obtener_identif1()}' and estado=true)";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $amistad = $save->fetchObject();
+            }
+            return $amistad;
         }
     }

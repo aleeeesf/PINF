@@ -86,10 +86,10 @@
             </h4>
         </center>
         <a href="index.php?c=Usuario&&a=apuestas"><i class="fas fa-home" style="color:#707d8c;"></i><span>Inicio</span></a>
-        <a href="#"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
-        <a href="index.php?c=Usuario&&a=amigos"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
+        <a href="index.php?c=Usuario&&a=apostar"><i class="far fa-money-bill-alt" style="color:#707d8c;"></i><span>Apostar</span></a>
+        <a href="index.php?c=Amistad&&a=amigo"><i class="fas fa-users" style="color:#707d8c;"></i><span>Amigos</span></a>
         <a href="index.php?c=Usuario&&a=aprobadas"><i class="far fa-thumbs-up" style="color:#707d8c;"></i><span>Asig.Aprobadas</span></a>
-        <a href="index.php?c=Usuario&&a=asignaturas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
+        <a href="index.php?c=Usuario&&a=matriculadas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
     </div>
 <body>
 
@@ -98,9 +98,9 @@
             <input class="form-control me-2" type="search" placeholder="Buscar amigo" aria-label="Search" name="amigo">
             <button class="btn btn-outline-success" type="submit" name='anadir'>Buscar</button>    
         </div>  
-    </form>
-    <?php if (isset($usuario2)) { ?>
-    <div class="contenido">
+        <?php if (isset($usuario2)) { ?>
+    
+            <br></br>
     <div class="container"> 
     <div class="col-md-8">
         <div class="people-nearby">                            
@@ -146,7 +146,8 @@
         </div>
     </div> 
     </div>
-    </div>
     <?php } ?>
+    </form>
+    
 </body>
 </html>
