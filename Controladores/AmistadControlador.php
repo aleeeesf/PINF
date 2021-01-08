@@ -62,20 +62,20 @@
             if (!isset($_SESSION['identidad'])) {
                 require_once 'Vistas/Registro.phtml';
             } else {
-                if (!isset($_POST['enviar_solicutud'])) {
-                    require_once 'Vistas/buscador.phtml';
-                } else {
+                if (isset($_POST['enviar_solicutud'])) {
                     $id2 = isset($_POST['id2']) ? $_POST['id2'] : false;
 
                     if ($id2) {
                         $id1 = $_SESSION['identidad']->id;
                         $amistad = new Amistad($id1, $id2);
                         $amistad->enviar_solicitud();
-                        header("Location:index.php?c=Amistad&&a=buscador");
+                        require_once 'Vistas/buscador.phtml';
                     } else {
+                        $_SESSION['error_enviar'] = "No se ha podido enviar la solicitud";
                         header("Location:index.php");
                     }
                 }
+                require_once 'Vistas/buscador.phtml';
             }
         }
 

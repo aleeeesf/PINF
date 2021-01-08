@@ -92,12 +92,13 @@
         <a href="index.php?c=Usuario&&a=matriculadas"><i class="far fa-address-book" style="color:#707d8c;"></i><span>Asig.Matriculadas</span></a>       
     </div>
 <body>
-
-    <form class="contenido" method="POST" action="index.php?c=Amistad&&a=buscador">
+<div class="contenido">
+    <form  method="POST" action="index.php?c=Amistad&&a=buscador">
         <div class="container d-flex">               
             <input class="form-control me-2" type="search" placeholder="Buscar amigo" aria-label="Search" name="amigo">
             <button class="btn btn-outline-success" type="submit" name='anadir'>Buscar</button>    
-        </div>  
+        </div> 
+    </form>
         <?php if (isset($usuario2)) { ?>
     
             <br></br>
@@ -147,7 +148,6 @@
     </div> 
     </div>
     <?php } ?>
-    </form>
-    
+    </div>
 </body>
 </html>
