@@ -60,10 +60,10 @@ header{
 }
 
 .navegacion{
-    width: 70%;
-    height: 70px;
+    /*width: 70%;*/
+    /*height: 70px;*/
     float: left;
-    padding: 24px 20px 0 0;
+    /*padding: 24px 20px 0 0;*/
     box-sizing: border-box;
     text-align: right;
 }
