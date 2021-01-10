@@ -61,6 +61,7 @@
                     (new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,40))->actualizar_pinfcoins_usuario();
                     $_SESSION['identidad']->pinfcoins=40;
                 }
+                $_SESSION['error_apostar']  = false;
                 $asig= new Asignatura();
                 $asig->insertar_id_user($_SESSION['identidad']->id);
                 $misasignaturas=$asig->asignaturas_matriculadas_usuario();
@@ -72,7 +73,7 @@
 
                     $asig->insertar_id_asignatura($asigapos);
                     if($asigapos && $apos && $pinfc){
-                        $apuesta= new UsuApuesAsig ($_SESSION['identidad']->id,$asigapos,$apos);
+                        $apuesta= new UsuApuesAsig ($_SESSION['identidad']->id,(int)$asigapos,(int)$apos);
                         $aleatorio=rand(0,10);
                         
                         $cuota=($apuesta->obtener_cuota())->fetchObject();
@@ -87,13 +88,18 @@
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
                         }
-                        if($aleatorio >5){
+                        if($aleatorio >=5){
+                            $asig1=$asig->buscar_asignatura();
+                            $pinfcoins_t=$pinfcoins_t+($aleatorio*$asig1->numero_creditos);
                             $asig->insertar_asignatura_aprobada();
                             $asig->borrar_asignatura();
                         }
                         $_SESSION['identidad']->pinfcoins=$pinfcoins_t;
                         $user=new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,$_SESSION['identidad']->pinfcoins);
                         $user->actualizar_pinfcoins_usuario();
+                        $apuesta->insertar_apuesta();
+                    } else {
+                        $_SESSION['error_apostar'] = "Rellena todos los campos";
                     }
                     require_once 'Vistas/apostar.phtml';
                     //header("Location:index.php?c=Usuario&&a=apostar");
@@ -104,8 +110,66 @@
             }
         }
 
+        public function apostar_amigo(){
+            if(!isset($_SESSION['identidad'])){
+                require_once 'Vistas/Registro.phtml';
+                $_SESSION['error_registro']=false;
+            }else{
+                $_SESSION['error_apostar_amigo']  = false;
+                $asig= new Asignatura();
+                $asig->insertar_id_user($_SESSION['id_amigo']);
+                $misasignaturas=$asig->asignaturas_matriculadas_usuario();
+                $apuestas = (new Usuario())->mostrar_apuestas();
+                if (isset($_POST['apuestas'])){
+                    $asigapos = $_POST['asignaturas']=='false' ? false : $_POST['asignaturas'];
+                    $apos = $_POST['apuesta']=='false' ? false : $_POST['apuesta'];
+                    $pinfc=isset($_POST['pinfcoin']) ? $_POST['pinfcoin'] : false;
+
+                    $asig->insertar_id_asignatura($asigapos);
+                    if($asigapos && $apos && $pinfc){
+                        $apuesta= new UsuApuesAsig ($_SESSION['identidad']->id,$asigapos,$apos);
+                        $aleatorio=rand(0,10);
+                        $aleatorio=10;
+                        
+                        $cuota=($apuesta->obtener_cuota())->fetchObject();
+                        $cuota1=(float)$cuota->cuota;
+                        $pinfcoins_t = $_SESSION['identidad']->pinfcoins-$pinfc;
+                        if($apos==1 && $aleatorio<5){
+                            
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                        }
+                        if($apos==2 && $aleatorio >= 5){
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                        }
+                        if($aleatorio >= 5){
+                            $user=new Usuario(null,null,null,null,null,null,$_SESSION['id_amigo']);
+                            $asig1=$asig->buscar_asignatura();
+                            $user->insertar_pinfcoins($user->obtener_pinfcoins()+ ($aleatorio*$asig1->numero_creditos));
+                            $user->actualizar_pinfcoins_usuario();
+                            $asig->insertar_asignatura_aprobada();
+                            $asig->borrar_asignatura();
+                        }
+                        $_SESSION['identidad']->pinfcoins=$pinfcoins_t;
+                        $user=new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,$_SESSION['identidad']->pinfcoins);
+                        $user->actualizar_pinfcoins_usuario();
+                        $apuesta->insertar_apuesta();
+                    }
+                    else {
+                        $_SESSION['error_apostar_amigo'] = "Rellena todos los campos";
+                    }
+                    require_once 'Vistas/apostar_amigo.phtml';
+                }
+                require_once 'Vistas/apostar_amigo.phtml';
+                
+            }
+        }
+
         public function save(){ 
             if(!isset($_POST['register'])){
+                $user=new Usuario(null,null,null,null,null,null,null);
+                $carreras=$user->listado_carreras();
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
             }else{
