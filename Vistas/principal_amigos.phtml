@@ -94,21 +94,10 @@
 <body>
 
     <?php while($usuario=$amigos1->fetchObject()) { ?>
+    
+
+
     <div class="contenido">
-
-    <div class="container">
-            <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">¡Ya puedes añadir a tus amigos!</h4>
-                <p>Cada vez que añadas a tus amigos aparacerán aquí abajo. Recuerda que puedes apostarle a tus amigos, pero... ¡CIUDADO!, no vaya a ser
-                    que tu amigo te tienda una trampa y pierdas tus PINFcoins ;)
-                </p>
-                <hr>
-                <p class="mb-0">Podrás apostar a todos tus amigos, así que recuerda añadir más para ganar más PINFcoins</p>
-            </div>
-        </div>
-
-
-
     <div class="container"> 
     <div class="col-md-8">
         <div class="people-nearby">                            
@@ -127,8 +116,9 @@
                         <p><?php echo $usuario->identificador;?></p> 
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <form action="#" >
-                            <button type="button" class="btn btn-primary">Ver Amigo</button>
+                        <form action="index.php?c=Amistad&&a=amigo" method="POST">
+                            <input type="number" hidden name="id_amigo" value="<?= $usuario->id ?>">
+                            <button type="submit" class="btn btn-primary" name="apostar_amigo">Apostar amigo</button>
                         </form>
                     </div>
                 </div>
@@ -138,6 +128,19 @@
     </div>
     </div>
     <?php } ?>
+    
+    <div class="contenido">
+    <div class="container">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">¡Ya puedes añadir a tus amigos!</h4>
+                <p>Cada vez que añadas a tus amigos aparacerán aquí abajo. Recuerda que puedes apostarle a tus amigos, pero... ¡CIUDADO!, no vaya a ser
+                    que tu amigo te tienda una trampa y pierdas tus PINFcoins ;)
+                </p>
+                <hr>
+                <p class="mb-0">Podrás apostar a todos tus amigos, así que recuerda añadir más para ganar más PINFcoins</p>
+            </div>
+    </div>
+    </div>
 </body>
 
 </html>

@@ -143,7 +143,7 @@ require_once 'Modelos/conexionBD.php';
         }
 
         public function listado_carreras(){
-            $sql = "select * from carrera where id_carrera!='{$this->obtener_carrera()}'";
+            $sql = "select * from carrera";
             $save = $this->conex->query($sql);
             return $save;
         }
@@ -156,6 +156,7 @@ require_once 'Modelos/conexionBD.php';
 
         public function buscar_amigo()
         {
+            $usuario=false;
             $sql="select * from usuario where identificador='{$this->obtener_identificador()}'";
             $save = $this->conex->query($sql);
             if($save && ($save->rowCount()==1)){

@@ -94,7 +94,7 @@
     </div>
     
     <div class="contenido">
-        <form class="container" action="index.php?c=Usuario&&a=apostar" method="POST" name="apuestas">
+        <form class="container" action="index.php?c=Usuario&&a=apostar_amigo" method="POST" name="apuestas">
             <select class="form-select" aria-label=".form-select-sm example " name="asignaturas" >
                 <option value="false">Seleccione una asignatura para apostar:</option>
                 <?php
@@ -117,9 +117,9 @@
             <input class="btn btn-primary" type="submit" name="apuestas" value="Enviar">
             <br></br>
             <?php
-                if(isset($_SESSION['error_apostar'])  && $_SESSION['error_apostar'])
+                if(isset($_SESSION['error_apostar_amigo'])  && $_SESSION['error_apostar_amigo'])
                 {
-                    echo "<p class='alert alert-danger'>".$_SESSION['error_apostar']."</p>";
+                    echo "<p class='alert alert-danger'>".$_SESSION['error_apostar_amigo']."</p>";
                 }            ?>
         </form>
         <div class="container">
@@ -133,8 +133,8 @@
         <br>
         <div class="container">
             <div class="alert alert-info" role="alert">
-                <h4 class="alert-heading">¡Ya puedes apostar!</h4>
-                <p>Apuesta aquellas asignaturas que piensas que vas a aprobar o suspender, pero... ¡CIUDADO! No vaya a ser que 
+                <h4 class="alert-heading">¡Ya puedes apostar a tus amigos!</h4>
+                <p>Apuesta aquellas asignaturas que piensas que tus amigos van a aprobar o suspender, pero... ¡CIUDADO! No vaya a ser que 
                     te quedes sin PINFcoins. Recuerda apostar con sabiduría. Estudiantes... ¡APUESTEN!
                 </p>
                 <hr>

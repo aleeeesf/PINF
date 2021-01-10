@@ -19,9 +19,15 @@
             {
                 require_once "Vistas/Registro.phtml";
             }else{
-                $amistad = new Amistad($_SESSION['identidad']->id,null);
-                $amigos1 = $amistad->obtener_amigos();
-                require_once "Vistas/principal_amigos.phtml";
+                if(!isset($_POST['apostar_amigo']))
+                {
+                    $amistad = new Amistad($_SESSION['identidad']->id,null);
+                    $amigos1 = $amistad->obtener_amigos();
+                    require_once "Vistas/principal_amigos.phtml";
+                } else {
+                    $_SESSION['id_amigo'] = $_POST['id_amigo'];
+                    header("Location:index.php?c=Usuario&&a=apostar_amigo");
+                }
             }
         }
 
@@ -33,6 +39,7 @@
                 $user=$_SESSION['identidad'];
                 $usuario1=new Usuario(null,null,null,null,null,null,$user->id);
                 $encontrado=false;
+                $_SESSION['error_buscador'] = false;
                 if(!isset($_POST['amigo']))
                 {
                     require_once "Vistas/buscador.phtml";
@@ -42,18 +49,25 @@
                     {
                         $usuario=new Usuario(null,null,null,null,$amigo,null,null);
                         $usuario2=$usuario->buscar_amigo();
-                        $amistad = new Amistad($user->id, $usuario2->id);
-                        $encontrado = $amistad->comprobar_amistad();
-                        if ($encontrado)
-                        {
-                            if ($encontrado->id_user1 == $user->id) {
-                                $soySolicitante = true;
-                            } else {
-                                $soySolicitante = false;
+                        if($usuario2==false){
+                            $_SESSION['error_buscador']="No se ha encontrado";
+                        } else{
+                            $amistad = new Amistad($user->id, $usuario2->id);
+                            $encontrado = $amistad->comprobar_amistad();
+                            if ($encontrado)
+                            {
+                                if ($encontrado->id_user1 == $user->id) {
+                                    $soySolicitante = true;
+                                } else {
+                                    $soySolicitante = false;
+                                }
                             }
                         }
-                        require_once "Vistas/buscador.phtml";
+                    } else
+                    {
+                        $_SESSION['error_buscador'] = "Introduce un id";
                     }
+                    require_once "Vistas/buscador.phtml";
                 }
             }
         }

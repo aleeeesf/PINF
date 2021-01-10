@@ -31,9 +31,11 @@
             <input class="controls" type="text" name="identificadores" id="identificadores" placeholder="Ingrese su usuario">
             <select class="controls" name="carreras" id="carreras">
                 <option value="false">Seleccione una carrera:</option>
-                <option value="GII">Ingeniería Informática</option>
-                <option value="GIA">Ingeniería Aeroespacial</option>
-                <option value="GIM">Ingeniería Mecánica</option>
+                <?php
+                    while($carrera=$carreras->fetchObject()){
+                        echo "<option value=".$carrera->id_carrera.">".$carrera->nombre_carrera."</option>";
+                    }
+                ?>
             </select>
             <?php
                 if (isset($_SESSION['error_registro']) && $_SESSION['error_registro']){

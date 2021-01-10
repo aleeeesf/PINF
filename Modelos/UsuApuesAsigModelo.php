@@ -34,12 +34,26 @@ require_once 'Modelos/conexionBD.php';
             $this->identificador_asignatura=$id_asig;
         }
 
+        public function insertar_id_apuesta(Int $id_ap){
+            $this->identificador_apuesta=$id_ap;
+        }
+
         public function obtener_cuota()
         {
             $sql="select cuota from apuestas where id_apuesta={$this->obtener_id_apuesta()}";
             return $this->conex->query($sql);
         }
 
+        public function insertar_apuesta(){
+            $sql = "insert into us_as_ap values ({$this->obtener_id_apuesta()}, {$this->obtener_id_asignatura()}, {$this->obtener_id_usuario()},null)";
+            $save = $this->conex->exec($sql);
+            
+            $resultado = false;
+            if($save){
+                $resultado = true;
+            }
+            return $resultado;
+        }
         
 
     }
