@@ -12,13 +12,13 @@
 <li>Antonio Morales Fernández</li>
 <li>Juan Carlos Fernández Gallardo</li>
 <br>
-# **Instalación**🏛
+**📥Instalación🖱**
 <li>Descargar wampserver</li>				
 <li>Dirijase a la carpeta /www situada en la carpeta donde hayas instalado wampserver</li>
 <li>Clone este repositorio dentro de dicha carpeta, es decir, dentro de /www</li>
 <li>Abra su navegador preferido</li>
 <li>Escriba en la barra de búsqueda 'localhost'</li>
-<li>Aparecerá un menú de wampserver</li>.
+<li>Aparecerá un menú de wampserver</li>
 <li>Selecciona phpmyAdmin</li>
 <li>Importe la base de datos 'DATABASE.sql'</li>
 <li>Dirijase en el navegador a 'localhost/PINF/index.php</li>
