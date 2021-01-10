@@ -99,8 +99,15 @@
             <button class="btn btn-outline-success" type="submit" name='anadir'>Buscar</button>    
         </div> 
     </form>
-    <?php if (isset($_SESSION['error_buscador'])) { echo $_SESSION['error_buscador']; } ?>
-        <?php if (isset($usuario2) && $usuario2) { ?>
+    <br>
+    <div class="container">
+        <?php if (isset($_SESSION['error_buscador']) && $_SESSION['error_buscador']) { 
+            echo "<p class='alert alert-danger'>".$_SESSION['error_buscador']."</p>";
+            } 
+        ?>
+    </div>
+
+    <?php if (isset($usuario2) && $usuario2) { ?>
     
             <br></br>
     <div class="container"> 
