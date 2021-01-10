@@ -23,9 +23,9 @@
 <li>Importe la base de datos 'DATABASE.sql'</li>
 <li>Dirijase en el navegador a 'localhost/PINF/index.php</li>
 <li>Ya podrás disfruta de PINFBET</li>
-![Alt text](Estatico/Imagenes/cap1.png?raw=true "Optional Title")
-![Alt text](Estatico/Imagenes/cap2.png?raw=true "Optional Title")
-![Alt text](Estatico/Imagenes/cap3.png?raw=true "Optional Title")
-![Alt text](Estatico/Imagenes/cap4.png?raw=true "Optional Title")
-![Alt text](Estatico/Imagenes/cap5.png?raw=true "Optional Title")
-![Alt text](Estatico/Imagenes/cap6.jpg?raw=true "Optional Title")
+![](Estatico/Imagenes/cap1.png?raw=true "Optional")
+![](Estatico/Imagenes/cap2.png?raw=true "Optiona")
+![](Estatico/Imagenes/cap3.png?raw=true "Option")
+![](Estatico/Imagenes/cap4.png?raw=true "Optio")
+![](Estatico/Imagenes/cap5.png?raw=true "Opti")
+![](Estatico/Imagenes/cap6.jpg?raw=true "Opt")
