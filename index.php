@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Pinfbet</title>
-        <link rel="icon"  type="image/png" href="Estatico/Imagenes/5.png">
+        <link rel="icon"  type="image/png" href="Estatico/Imagenes/pinfcoin.png">
     </head>
     <body>
         <?php

@@ -57,10 +57,7 @@
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
             }else{
-                if ($_SESSION['identidad']->pinfcoins == 0) {
-                    (new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,40))->actualizar_pinfcoins_usuario();
-                    $_SESSION['identidad']->pinfcoins=40;
-                }
+
                 $_SESSION['error_apostar']  = false;
                 $asig= new Asignatura();
                 $asig->insertar_id_user($_SESSION['identidad']->id);
