@@ -1,4 +1,4 @@
-![Alt text](Estatico/Imagenes/s2-minimized.png?raw=true "Optional Title")
+![Alt text](Estatico/Imagenes/s2-minimized.png?raw=true "Optional Title");
 
 # **Una página de apuestas de asignaturas de la Universidad De Cádiz**🏛
 <li>✅Totalmente Gratuito</li>
