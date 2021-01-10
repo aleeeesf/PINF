@@ -12,7 +12,7 @@
 <li>Antonio Morales Fernández</li>
 <li>Juan Carlos Fernández Gallardo</li>
 <br>
-## **Instalación**
+**Instalación**
 <li>Descargar wampserver</li>				
 <li>Dirijase a la carpeta /www situada en la carpeta donde hayas instalado wampserver</li>
 <li>Clone este repositorio dentro de dicha carpeta, es decir, dentro de /www</li>
