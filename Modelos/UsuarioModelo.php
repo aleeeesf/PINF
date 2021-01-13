@@ -125,6 +125,16 @@ require_once 'Modelos/conexionBD.php';
             return $usuario;
         }
 
+        public function buscar_usuario_id() {
+            $usuario=false;
+            $sql = "select * from usuario where id = {$this->obtener_id()}";
+            $save = $this->conex->query($sql);
+            if($save && ($save->rowCount()==1)){
+                $usuario = $save->fetchObject();
+            }
+            return $usuario;
+        }
+
         public function actualizar_usuario()
         {
             $usuario=false;
@@ -136,6 +146,19 @@ require_once 'Modelos/conexionBD.php';
             }
             return $resultado;
         }
+
+        public function actualizar_usuario_no_password()
+        {
+            $usuario=false;
+            $sql = "update usuario set Nombre='{$this->obtener_nombre()}',Apellidos='{$this->obtener_apellidos()}',email='{$this->obtener_email()}',identificador='{$this->obtener_identificador()}',pinfcoins={$this->obtener_pinfcoins()},id_carrera='{$this->obtener_carrera()}' where id='{$this->obtener_id()}'";
+            $save = $this->conex->query($sql);
+            $resultado = false;
+            if($save){
+                $resultado = true;
+            }
+            return $resultado;
+        }
+
         public function actualizar_pinfcoins_usuario()
         {
             $sql = "update usuario set pinfcoins = {$this->obtener_pinfcoins()} where id = {$this->obtener_id()}";

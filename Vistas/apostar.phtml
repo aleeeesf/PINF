@@ -124,9 +124,19 @@
         </form>
         <div class="container">
         <br></br>
-        <?php 
+        <?php
+            if(isset($_SESSION['acertar'])  && $_SESSION['acertar'])
+            {
+                echo "<p class='alert alert-success'>".$_SESSION['acertar']."</p>";
+            }
+
+             if(isset($_SESSION['fallar'])  && $_SESSION['fallar'])
+            {
+                echo "<p class='alert alert-danger'>".$_SESSION['fallar']."</p>";
+            }
+                         
             if (isset($aleatorio)) {?>
-                <p class='alert alert-danger'>Has sacado un: <?= $aleatorio ?></p>
+                <p class='alert alert-info'>Has sacado un: <?= $aleatorio ?></p>
          <?php } ?>
         </div>
 

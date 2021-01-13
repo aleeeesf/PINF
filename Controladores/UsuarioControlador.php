@@ -56,9 +56,13 @@
             if(!isset($_SESSION['identidad'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
+                $_SESSION['acertar']=false;
+                $_SESSION['fallar']=false;
             }else{
 
                 $_SESSION['error_apostar']  = false;
+                $_SESSION['acertar']=false;
+                $_SESSION['fallar']=false;
                 $asig= new Asignatura();
                 $asig->insertar_id_user($_SESSION['identidad']->id);
                 $misasignaturas=$asig->asignaturas_matriculadas_usuario();
@@ -80,10 +84,22 @@
                             
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
                         }
-                        if($apos==2 && $aleatorio >= 5){
+                        else{
+                            if($apos==1){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
+                        }
+                        if($apos==2 &&aleatorio >= 5){
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==2){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
                         }
                         if($aleatorio >=5){
                             $asig1=$asig->buscar_asignatura();
@@ -111,8 +127,12 @@
             if(!isset($_SESSION['identidad'])){
                 require_once 'Vistas/Registro.phtml';
                 $_SESSION['error_registro']=false;
+                $_SESSION['acertar']=false;
+                $_SESSION['fallar']=false;
             }else{
                 $_SESSION['error_apostar_amigo']  = false;
+                $_SESSION['acertar']=false;
+                $_SESSION['fallar']=false;
                 $asig= new Asignatura();
                 $asig->insertar_id_user($_SESSION['id_amigo']);
                 $misasignaturas=$asig->asignaturas_matriculadas_usuario();
@@ -126,7 +146,6 @@
                     if($asigapos && $apos && $pinfc){
                         $apuesta= new UsuApuesAsig ($_SESSION['identidad']->id,$asigapos,$apos);
                         $aleatorio=rand(0,10);
-                        $aleatorio=10;
                         
                         $cuota=($apuesta->obtener_cuota())->fetchObject();
                         $cuota1=(float)$cuota->cuota;
@@ -135,22 +154,36 @@
                             
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==1){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
                         }
                         if($apos==2 && $aleatorio >= 5){
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==2 ){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
                         }
                         if($aleatorio >= 5){
                             $user=new Usuario(null,null,null,null,null,null,$_SESSION['id_amigo']);
+                            $user2=$user->buscar_usuario_id();
                             $asig1=$asig->buscar_asignatura();
-                            $user->insertar_pinfcoins($user->obtener_pinfcoins()+ ($aleatorio*$asig1->numero_creditos));
+                            $pinfcoins_u=$user2->pinfcoins+($aleatorio*$asig1->numero_creditos);
+                            $user->insertar_pinfcoins($pinfcoins_u);
                             $user->actualizar_pinfcoins_usuario();
                             $asig->insertar_asignatura_aprobada();
                             $asig->borrar_asignatura();
                         }
                         $_SESSION['identidad']->pinfcoins=$pinfcoins_t;
-                        $user=new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,$_SESSION['identidad']->pinfcoins);
-                        $user->actualizar_pinfcoins_usuario();
+                        $user1=new Usuario(null,null,null,null,null,null,$_SESSION['identidad']->id,$_SESSION['identidad']->pinfcoins);
+                        $user1->actualizar_pinfcoins_usuario();
                         $apuesta->insertar_apuesta();
                     }
                     else {
@@ -177,7 +210,7 @@
                 $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
                 if($nombre && $apellidos && $email && $pass && $ide && $carrera){
-                    $usuario = new Usuario($nombre,$apellidos,$email,$pass,$ide,$carrera,null);
+                    $usuario = new Usuario($nombre,$apellidos,$email, md5($pass),$ide,$carrera,null);
                     if($usuario->identificador_repetido())
                     {
                         $_SESSION['error_registro'] = "Identificador repetido";
@@ -215,7 +248,8 @@
                     $_SESSION['error_login']=false;
                     $usuario = new Usuario();
                     $usuario->insertar_email($email);
-                    $usuario->insertar_contrasena($pass);
+                    $password = md5($pass);
+                    $usuario->insertar_contrasena($password);
                     $miusuario=$usuario->iniciosesion();
                     if($miusuario){
                         $_SESSION['identidad'] = $miusuario;
@@ -249,6 +283,9 @@
                 header("Location:index.php");
             }
             $usuario_ant=$_SESSION['identidad'];
+            $usuario=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,null);
+            $carreras=$usuario->listado_carreras();
+            $_SESSION['error_actualizar'] = false;
             if(!isset($_POST['edit_user']))
             {
                 $usuario=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,null);
@@ -265,19 +302,22 @@
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
                 if($nombre && $apellidos  && $contrasena && $ide && $carrera)
                 {
-                    $usuario_nuevo=new Usuario(null,null,null,null,null,$usuario_ant->id_carrera,$usuario_ant->id,$usuario_ant->pinfcoins);
-                    $usuario_nuevo->insertar_nombre($nombre);
-                    $usuario_nuevo->insertar_apellidos($apellidos);
-                    $usuario_nuevo->insertar_email($email);
-                    $usuario_nuevo->insertar_contrasena($contrasena);
-                    $usuario_nuevo->insertar_identificador($ide);
-                    $usuario_nuevo->insertar_carrera($carrera);
-                    var_dump($usuario_nuevo);
+                    $usuario_nuevo=new Usuario($nombre,$apellidos,$email,md5($contrasena),$ide,$usuario_ant->id_carrera,$usuario_ant->id,$usuario_ant->pinfcoins);
                     $usuario_nuevo->actualizar_usuario();
                     $_SESSION['identidad'] = null;
                     session_destroy();
-                    header("Location:index.php?c=Usuario&&a=iniciosesion");
-                    
+                    header("Location:index.php?c=Usuario&&a=iniciosesion");                    
+                } else {
+                    if ($nombre && $apellidos && $ide && $carrera) {
+                        $usuario_nuevo=new Usuario($nombre,$apellidos,$email,null,$ide,$usuario_ant->id_carrera,$usuario_ant->id,$usuario_ant->pinfcoins);
+                        $usuario_nuevo->actualizar_usuario_no_password();
+                        $_SESSION['identidad'] = null;
+                        session_destroy();
+                        header("Location:index.php?c=Usuario&&a=iniciosesion");
+                    } else {
+                        $_SESSION['error_actualizar'] = "Rellena todos los campos";
+                        require_once 'Vistas/EditarPerfil.phtml';
+                    }
                 }
             }
             if(!isset($_POST['Agregar']))
