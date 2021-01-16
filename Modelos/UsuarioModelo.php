@@ -10,7 +10,7 @@ require_once 'Modelos/conexionBD.php';
         private $pinfcoins;
         private $carrera;
         private $id;
-        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,Int $id1=null, Int $pinf=null){ 
+        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,Int $id1=null, Int $pinf=40){ 
             $this->conex=parent::conectar();
             $this->nombre=$nom;
             $this->apellidos=$apell;
