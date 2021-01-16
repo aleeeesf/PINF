@@ -244,7 +244,7 @@
                 $ide = isset($_POST['identificadores']) ? $_POST['identificadores'] : false;
                 $carrera = $_POST['carreras']=='false' ? false : $_POST['carreras'];
                 if($nombre && $apellidos && $email && $pass && $ide && $carrera){
-                    $usuario = new Usuario($nombre,$apellidos,$email, md5($pass),$ide,$carrera,null);
+                    $usuario = new Usuario($nombre,$apellidos,$email, md5($pass),$ide,$carrera,null,40);
                     if($usuario->identificador_repetido())
                     {
                         $_SESSION['error_registro'] = "Identificador repetido";

@@ -10,7 +10,7 @@ require_once 'Modelos/conexionBD.php';
         private $pinfcoins;
         private $carrera;
         private $id;
-        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,Int $id1=null, Int $pinf=40){ 
+        function __construct(String $nom=null,String $apell=null,String $em=null,String $contra=null,String $ide=null,String $carrer=null,Int $id1=null, Int $pinf=null){ 
             $this->conex=parent::conectar();
             $this->nombre=$nom;
             $this->apellidos=$apell;
@@ -104,7 +104,7 @@ require_once 'Modelos/conexionBD.php';
         }
 
         public function save(){
-            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}',0,'{$this->obtener_carrera()}',null)";
+            $sql = "insert into usuario values('{$this->obtener_nombre()}', '{$this->obtener_apellidos()}', '{$this->obtener_contrasena()}', '{$this->obtener_email()}','{$this->obtener_identificador()}',50,'{$this->obtener_carrera()}',null)";
             $save = $this->conex->exec($sql);
             
             $resultado = false;
