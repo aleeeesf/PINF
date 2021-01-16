@@ -19,6 +19,10 @@
             require_once "Vistas/Terminos.html";
         }
 
+        public function declaracion(){
+            require_once "Vistas/declaracionresp.html";
+        }
+
         public function apuestas(){
             $asig=new Asignatura(null,null,null,null,null);
             $asig->insertar_id_user($_SESSION['identidad']->id);
@@ -91,13 +95,43 @@
                                 $_SESSION['fallar']="Has fallado la apuesta";
                             }
                         }
-                        if($apos==2 &&aleatorio >= 5){
+                        if($apos==2 && $aleatorio >= 5){
                             $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
                             $pinfcoins_t=(int)$pinfcoins_t;
                             $_SESSION['acertar']="Has acertado la apuesta";
                         }
                         else{
                             if($apos==2){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
+                        }
+                        if($apos==3 && $aleatorio == 10){
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==3){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
+                        }
+                        if($apos==4 && $aleatorio == 0){
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==4){
+                                $_SESSION['fallar']="Has fallado la apuesta";
+                            }
+                        }
+                        if($apos==5 && $aleatorio ==4){
+                            $pinfcoins_t=$pinfcoins_t+($pinfc*$cuota1);
+                            $pinfcoins_t=(int)$pinfcoins_t;
+                            $_SESSION['acertar']="Has acertado la apuesta";
+                        }
+                        else{
+                            if($apos==5){
                                 $_SESSION['fallar']="Has fallado la apuesta";
                             }
                         }

@@ -79,7 +79,7 @@ body{
     background-color: rgba(0, 0, 0, 0.7);   
     padding: 30px;
     margin: auto;
-    margin-top: 190px;
+    margin-top: 130px;
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
@@ -235,6 +235,28 @@ section{
     color: #000
 }
 
+.declaracion h2{
+    margin-left: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #000
+}
+
+.declaracion h4{
+    margin-left: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal; 
+    color: #000
+}
+
+.declaracion ul{
+    margin-left: 80px;
+    font-family: 'Roboto', sans-serif;
+    color: #000
+}
+
+.declaracion img{
+    margin-left: 135px;
+}
 .box div{
     position: absolute;
     width: 60px;
