@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 10-01-2021 a las 13:14:41
+-- Tiempo de generación: 17-01-2021 a las 14:28:50
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.3.21
 
@@ -36,13 +36,6 @@ CREATE TABLE IF NOT EXISTS `amigos` (
   KEY `cf6` (`id_user2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `amigos`
---
-
-INSERT INTO `amigos` (`id_user1`, `id_user2`, `estado`) VALUES
-(1, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -56,15 +49,18 @@ CREATE TABLE IF NOT EXISTS `apuestas` (
   `cuota` float NOT NULL,
   PRIMARY KEY (`id_apuesta`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `apuestas`
 --
 
 INSERT INTO `apuestas` (`id_apuesta`, `descripcion`, `cuota`) VALUES
-(1, '¿Vas a suspender?', 1.55),
-(2, '¿Vas a aprobar?', 1.45);
+(1, '¿Vas a suspender?', 1.3),
+(2, '¿Vas a aprobar?', 1.5),
+(3, '¿Conseguirás matrícula de honor?', 2.2),
+(4, '¿Sacarás un 0?', 1.15),
+(5, '¿Sacarás un 4?', 1.55);
 
 -- --------------------------------------------------------
 
@@ -114,15 +110,6 @@ CREATE TABLE IF NOT EXISTS `asignaturas_aprobadas` (
   KEY `cf2` (`id_asignatura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `asignaturas_aprobadas`
---
-
-INSERT INTO `asignaturas_aprobadas` (`id`, `id_asignatura`) VALUES
-(1, 21714002),
-(1, 21714003),
-(2, 21714009);
-
 -- --------------------------------------------------------
 
 --
@@ -170,7 +157,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `Nombre` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `Apellidos` varchar(40) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `contrasena` varchar(15) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `contrasena` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `email` varchar(40) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `identificador` varchar(10) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `pinfcoins` int(11) NOT NULL,
@@ -180,17 +167,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `identificador` (`identificador`),
   UNIQUE KEY `id` (`id`),
   KEY `cf` (`id_carrera`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`Nombre`, `Apellidos`, `contrasena`, `email`, `identificador`, `pinfcoins`, `id_carrera`, `id`) VALUES
-('Antonio', 'Morales Fernandez', 'hola', '123@gmail.com', 'ant990', 51, 'GII', 1),
-('Alejandro', 'Serrano Fernández', 'hola1', '1234@gmail.com', 'ale', 60, 'GII', 2),
-('Samuel', 'Limones Cruz', 'comeralgogordo', '12345@gmail.com', 'samuelo', 0, 'GII', 4),
-('Pablo', 'Romero Arias', 'tonto', '123456@gmail.com', 'pablo980', 0, 'GIM', 3);
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -208,15 +185,7 @@ CREATE TABLE IF NOT EXISTS `us_as_ap` (
   KEY `cf7` (`id_apuesta`),
   KEY `cf8` (`id_asignatura`),
   KEY `cf9` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `us_as_ap`
---
-
-INSERT INTO `us_as_ap` (`id_apuesta`, `id_asignatura`, `id_usuario`, `id`) VALUES
-(2, 21714003, 1, 1),
-(2, 21714009, 1, 2);
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Restricciones para tablas volcadas
